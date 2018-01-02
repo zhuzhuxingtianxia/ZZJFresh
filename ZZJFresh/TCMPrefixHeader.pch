@@ -1,0 +1,31 @@
+//
+//  TCMPrefixHeader.pch
+//  ZZJFresh
+//
+//  Created by ZZJ on 2017/12/28.
+//  Copyright © 2017年 Jion. All rights reserved.
+//
+
+#ifndef TCMPrefixHeader_pch
+#define TCMPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef __OBJC__
+
+// Foundation
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+// category
+#import "UIFont+AutoLayout.h"
+
+//SDWebImage
+#import "UIImageView+WebCache.h"
+
+#import "TCM_Configuration.h"
+#import "SLGlobal.h"
+
+#endif
+
+#endif /* TCMPrefixHeader_pch */
