@@ -32,6 +32,9 @@
 		B63AB4881FF64D900007D9A4 /* TCMFreshSectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4871FF64D8F0007D9A4 /* TCMFreshSectionCell.m */; };
 		B63AB48D1FFB85BF0007D9A4 /* activity_status_goods_1.json in Resources */ = {isa = PBXBuildFile; fileRef = B63AB48C1FFB85BF0007D9A4 /* activity_status_goods_1.json */; };
 		B63AB4901FFB95270007D9A4 /* UIView+TCMBorderSide.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB48F1FFB95270007D9A4 /* UIView+TCMBorderSide.m */; };
+		B63AB4921FFCBBBB0007D9A4 /* timg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B63AB4911FFCBBBB0007D9A4 /* timg.jpg */; };
+		B63AB4951FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4941FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m */; };
+		B63AB49B1FFCC3040007D9A4 /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB49A1FFCC3040007D9A4 /* UIImage+Additions.m */; };
 		B8B076A3314BD528FA046AD4 /* Pods_ZZJFresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762EA87747C831FEB19EE625 /* Pods_ZZJFresh.framework */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +112,11 @@
 		B63AB48C1FFB85BF0007D9A4 /* activity_status_goods_1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = activity_status_goods_1.json; sourceTree = "<group>"; };
 		B63AB48E1FFB95270007D9A4 /* UIView+TCMBorderSide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+TCMBorderSide.h"; sourceTree = "<group>"; };
 		B63AB48F1FFB95270007D9A4 /* UIView+TCMBorderSide.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+TCMBorderSide.m"; sourceTree = "<group>"; };
+		B63AB4911FFCBBBB0007D9A4 /* timg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg.jpg; sourceTree = "<group>"; };
+		B63AB4931FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+NoneHighlighted.h"; sourceTree = "<group>"; };
+		B63AB4941FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+NoneHighlighted.m"; sourceTree = "<group>"; };
+		B63AB4991FFCC3040007D9A4 /* UIImage+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
+		B63AB49A1FFCC3040007D9A4 /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
 		CF0595CA9F5183F9E426279D /* Pods-ZZJFresh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZJFresh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZZJFresh/Pods-ZZJFresh.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -260,6 +268,7 @@
 		B63AB44E1FF490470007D9A4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B63AB4911FFCBBBB0007D9A4 /* timg.jpg */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -288,6 +297,10 @@
 				B63AB4811FF61BDB0007D9A4 /* NSObject+TCMObjectCopy.m */,
 				B63AB48E1FFB95270007D9A4 /* UIView+TCMBorderSide.h */,
 				B63AB48F1FFB95270007D9A4 /* UIView+TCMBorderSide.m */,
+				B63AB4931FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.h */,
+				B63AB4941FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m */,
+				B63AB4991FFCC3040007D9A4 /* UIImage+Additions.h */,
+				B63AB49A1FFCC3040007D9A4 /* UIImage+Additions.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -434,6 +447,7 @@
 				B63AB47C1FF5EC3E0007D9A4 /* activity_status_goods_2.json in Resources */,
 				B63AB4221FF48C420007D9A4 /* LaunchScreen.storyboard in Resources */,
 				B63AB41F1FF48C420007D9A4 /* Assets.xcassets in Resources */,
+				B63AB4921FFCBBBB0007D9A4 /* timg.jpg in Resources */,
 				B63AB41D1FF48C420007D9A4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,6 +616,7 @@
 				B63AB46F1FF514DA0007D9A4 /* UIView+TCMBasketAnimation.m in Sources */,
 				B63AB4251FF48C420007D9A4 /* main.m in Sources */,
 				B63AB4821FF61BDB0007D9A4 /* NSObject+TCMObjectCopy.m in Sources */,
+				B63AB4951FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m in Sources */,
 				B63AB4851FF644BB0007D9A4 /* TCMFreshNode.m in Sources */,
 				B63AB4541FF493820007D9A4 /* TCMFreshCell.m in Sources */,
 				B63AB4881FF64D900007D9A4 /* TCMFreshSectionCell.m in Sources */,
@@ -609,6 +624,7 @@
 				B63AB4511FF4915D0007D9A4 /* TCMFreshController.m in Sources */,
 				B63AB46C1FF514990007D9A4 /* UIView+TCMEdgeSlide.m in Sources */,
 				B63AB4771FF5E2D50007D9A4 /* TCMSectionScrollView.m in Sources */,
+				B63AB49B1FFCC3040007D9A4 /* UIImage+Additions.m in Sources */,
 				B63AB4901FFB95270007D9A4 /* UIView+TCMBorderSide.m in Sources */,
 				B63AB4641FF4BBFE0007D9A4 /* UIFont+AutoLayout.m in Sources */,
 				B63AB4571FF4939D0007D9A4 /* TCMFreshModel.m in Sources */,

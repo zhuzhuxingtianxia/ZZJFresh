@@ -7,12 +7,57 @@
 //
 
 #import "UIView+TCMEdgeSlide.h"
+#import <objc/runtime.h>
 
 @implementation UIView (TCMEdgeSlide)
+
+- (void)setDuration:(NSTimeInterval)duration{
+    objc_setAssociatedObject(self, @selector(duration), [NSNumber numberWithDouble:duration], OBJC_ASSOCIATION_ASSIGN);
+    
+}
+
+- (NSTimeInterval)getDuration{
+    return [objc_getAssociatedObject(self, @selector(duration)) doubleValue];
+}
 
 -(void)edgeSliseWithSupView:(UIView*)supView{
     
     [self edgeSliseWithSupView:supView animatedShake:NO];
+}
+
+-(void)edgeSliseWithSupView:(UIView*)supView shakeLoopDuration:(NSTimeInterval)duration{
+    if (supView && self.superview != supView) {
+        [supView addSubview:self];
+    }
+    if (duration > 0) {
+        [self setDuration:duration];
+        [self loopShakeBall];
+    }
+    //滑动手势
+    UIPanGestureRecognizer *slisePan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(slisePanAction:)];
+    
+    [self addGestureRecognizer:slisePan];
+}
+
+// 间隔duration秒循环抖动
+-(void)loopShakeBall{
+    //递归调用
+    [self performSelector:@selector(loopShakeBall) withObject:nil afterDelay:[self getDuration]];
+    [self shakeAnimation];
+}
+
+-(void)shakeAnimation{
+    [self.layer removeAllAnimations];
+    //创建动画
+    CAKeyframeAnimation * keyAnimaion = [CAKeyframeAnimation animation];
+    keyAnimaion.keyPath = @"transform.rotation";
+    keyAnimaion.values = @[@(-10 / 180.0 * M_PI),@(10 /180.0 * M_PI),@(-10/ 180.0 * M_PI)];//度数转弧度
+    keyAnimaion.removedOnCompletion = YES;
+    keyAnimaion.fillMode = kCAFillModeForwards;
+    keyAnimaion.duration = 0.25;
+    keyAnimaion.repeatCount = 4;
+    [self.layer addAnimation:keyAnimaion forKey:@"shake"];
+    
 }
 
 -(void)edgeSliseWithSupView:(UIView*)supView animatedShake:(BOOL)isShake{

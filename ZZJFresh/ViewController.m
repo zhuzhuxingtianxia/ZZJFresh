@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "UIView+TCMEdgeSlide.h"
 #import "UIView+TCMBasketAnimation.h"
+
 #import "TCMFreshModel.h"
 
 @interface ViewController ()
@@ -21,7 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self.moveTopButton edgeSliseWithSupView:self.view animatedShake:YES];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(10, 100, 40, 40);
+    [button setImage:[UIImage imageNamed:@"timg.jpg"] forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    
+    [self.moveTopButton setImage:[UIImage imageNamed:@"timg.jpg"] forState:UIControlStateNormal];
+    [self.moveTopButton edgeSliseWithSupView:self.view shakeLoopDuration:3.0];
     self.anImageView = [UIImageView new];
     self.anImageView.image = [UIImage imageNamed:@"mx"];
     self.anImageView.frame = CGRectMake(200, 200, 80, 80);
@@ -50,8 +58,8 @@
         _moveTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _moveTopButton.translatesAutoresizingMaskIntoConstraints = NO;
         UIImage *img = [UIImage imageNamed:@"home_dig"];
-        
         [_moveTopButton setImage:img forState:UIControlStateNormal];
+        _moveTopButton.adjustsImageWhenHighlighted = NO;
         [_moveTopButton addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_moveTopButton];
         
