@@ -23,9 +23,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    [self buildView];
+    
+}
+-(void)buildView{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(10, 100, 40, 40);
     [button setImage:[UIImage imageNamed:@"timg.jpg"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(animatinAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
     [self.moveTopButton setImage:[UIImage imageNamed:@"timg.jpg"] forState:UIControlStateNormal];
@@ -36,12 +41,34 @@
     [self.view addSubview:self.anImageView];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     
 }
+
+static BOOL change;
+-(void)animatinAction:(UIButton*)sender{
+    if (!change) {
+        change = YES;
+        [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:0.5 options:UIViewAnimationOptionOverrideInheritedDuration animations:^{
+            sender.bounds = CGRectMake(0, 0, 50, 50);
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+    }else{
+        change = NO;
+        [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:0.5 options:UIViewAnimationOptionOverrideInheritedDuration animations:^{
+            sender.bounds = CGRectMake(0, 0, 40, 40);
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+    
+}
+
 - (IBAction)freshEvtentAction:(id)sender {
     [self performSegueWithIdentifier:@"freshEvent" sender:sender];
     
