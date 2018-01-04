@@ -259,17 +259,28 @@
                                     <action selector="freshEvtentAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hDF-JL-T5Y"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dhh-ab-Gzp">
+                                <rect key="frame" x="40" y="165" width="295" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="5cv-Ay-p1B"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="G4i-w7-4Fj"/>
                     <connections>
+                        <outlet property="field" destination="dhh-ab-Gzp" id="Tek-Ov-fHt"/>
                         <segue destination="7V6-ao-Xb6" kind="push" identifier="freshEvent" id="gvT-Tf-MPf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="73" y="107"/>
+            <point key="canvasLocation" x="72.799999999999997" y="106.59670164917542"/>
         </scene>
     </scenes>
     <resources>

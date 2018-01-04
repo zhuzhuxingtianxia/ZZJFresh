@@ -35,6 +35,7 @@
 		B63AB4921FFCBBBB0007D9A4 /* timg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B63AB4911FFCBBBB0007D9A4 /* timg.jpg */; };
 		B63AB4951FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4941FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m */; };
 		B63AB49B1FFCC3040007D9A4 /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB49A1FFCC3040007D9A4 /* UIImage+Additions.m */; };
+		B63AB4A21FFDBCBA0007D9A4 /* UITextField+CursorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4A11FFDBCBA0007D9A4 /* UITextField+CursorRange.m */; };
 		B8B076A3314BD528FA046AD4 /* Pods_ZZJFresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762EA87747C831FEB19EE625 /* Pods_ZZJFresh.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,8 @@
 		B63AB4941FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+NoneHighlighted.m"; sourceTree = "<group>"; };
 		B63AB4991FFCC3040007D9A4 /* UIImage+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
 		B63AB49A1FFCC3040007D9A4 /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
+		B63AB4A01FFDBCBA0007D9A4 /* UITextField+CursorRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+CursorRange.h"; sourceTree = "<group>"; };
+		B63AB4A11FFDBCBA0007D9A4 /* UITextField+CursorRange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+CursorRange.m"; sourceTree = "<group>"; };
 		CF0595CA9F5183F9E426279D /* Pods-ZZJFresh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZJFresh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZZJFresh/Pods-ZZJFresh.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -301,6 +304,8 @@
 				B63AB4941FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m */,
 				B63AB4991FFCC3040007D9A4 /* UIImage+Additions.h */,
 				B63AB49A1FFCC3040007D9A4 /* UIImage+Additions.m */,
+				B63AB4A01FFDBCBA0007D9A4 /* UITextField+CursorRange.h */,
+				B63AB4A11FFDBCBA0007D9A4 /* UITextField+CursorRange.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 				B63AB4821FF61BDB0007D9A4 /* NSObject+TCMObjectCopy.m in Sources */,
 				B63AB4951FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m in Sources */,
 				B63AB4851FF644BB0007D9A4 /* TCMFreshNode.m in Sources */,
+				B63AB4A21FFDBCBA0007D9A4 /* UITextField+CursorRange.m in Sources */,
 				B63AB4541FF493820007D9A4 /* TCMFreshCell.m in Sources */,
 				B63AB4881FF64D900007D9A4 /* TCMFreshSectionCell.m in Sources */,
 				B63AB47A1FF5E9B10007D9A4 /* TCMNetWork.m in Sources */,

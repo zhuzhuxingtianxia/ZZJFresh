@@ -12,7 +12,7 @@
 @implementation UIView (TCMEdgeSlide)
 
 - (void)setDuration:(NSTimeInterval)duration{
-    objc_setAssociatedObject(self, @selector(duration), [NSNumber numberWithDouble:duration], OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(duration), [NSNumber numberWithDouble:duration], OBJC_ASSOCIATION_COPY_NONATOMIC);
     
 }
 

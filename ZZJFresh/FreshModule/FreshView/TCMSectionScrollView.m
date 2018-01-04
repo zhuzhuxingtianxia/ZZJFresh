@@ -43,7 +43,7 @@
         button.backgroundColor = RGB(233, 5, 50);
         self.selectButton = button;
         
-        [self animateItem:button];
+        [self animateItem:button click:NO];
     }
     
 }
@@ -107,7 +107,7 @@
     sender.backgroundColor = RGB(233, 5, 50);
     self.selectButton = sender;
     
-    [self animateItem:sender];
+    [self animateItem:sender click:YES];
     
     _selectIndex = sender.tag;
     if ([self.delegate respondsToSelector:@selector(sectionScrollView:didSelectIndex:)]) {
@@ -115,17 +115,20 @@
     }
 }
 
--(void)animateItem:(UIButton *)sender{
+-(void)animateItem:(UIButton *)sender click:(BOOL)isClick{
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         CGPoint changePoint;
         CGFloat weight = sender.frame.size.width;
-        if (sender.tag >= _sourceArray.count - 2) {
+        
+        
+        
+        if (sender.tag >= _sourceArray.count - (isClick ? 1 : 2)) {
             //不做偏移
             changePoint = _scrollView.contentOffset;
             
         }else if (sender.frame.origin.x >= _scrollView.bounds.size.width/2 && sender.tag > 1){
             
-            changePoint = CGPointMake((sender.tag - 1)*(weight+Offset), 0);
+            changePoint = CGPointMake((sender.tag - (isClick ? 2 : 1))*(weight+Offset), 0);
             
             
         }else{

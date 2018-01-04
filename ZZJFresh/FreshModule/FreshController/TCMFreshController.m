@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *barContraont;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic,strong)UIView  *footerView;
 
 // 保存数据容器
 @property(nonatomic,strong)NSMutableArray *dataArray;
@@ -68,16 +69,17 @@
     
     self.headerView.hidden = YES;
     self.headerView.frame = CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, TCM_StdLayout(126) + TCM_StdLayout(45.0));
+    
 }
 
 -(void)loadNetWorkData{
     [TCMNetWork sendAsyncPostHTTPRequestTo:@"activity_status_goods_2.json" withToken:@"" withFormTag:@"" formContent:@{} completionHandler:^(id objc, NSError *connectionError) {
         if ([objc isKindOfClass:[NSArray class]]) {
-            
+            NSArray *array = (NSArray *)objc;
             self.headerView.hidden = NO;
             
             NSInteger index = 0;
-            for (id subObj in (NSArray *)objc) {
+            [array enumerateObjectsUsingBlock:^(id  _Nonnull subObj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if ([subObj isKindOfClass:[NSDictionary class]]) {
                     TCMFreshActivityModel *activtyModel = [TCMFreshActivityModel new];
                     activtyModel.classify = subObj[@"classify"];
@@ -95,6 +97,14 @@
                         }
                     }
                     
+                }
+            }];
+            if (self.dataArray.count > 0) {
+                TCMFreshMarketModel *marketModel = self.dataArray.lastObject;
+                if (marketModel.goods.count < 6) {
+                    CGFloat footerH = (6 - marketModel.goods.count) * 85 + 5;
+                    self.footerView.frame = CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, footerH);
+                    self.tableView.tableFooterView = self.footerView;
                 }
             }
              _headerBar.hidden = NO;
@@ -134,7 +144,7 @@
 }
 /*
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 130;
+    return 85;
 }
 */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -219,6 +229,14 @@
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
+}
+
+-(UIView*)footerView{
+    if (!_footerView) {
+        _footerView = [UIView new];
+        _footerView.backgroundColor = [UIColor whiteColor];
+    }
+    return _footerView;
 }
 
 - (void)didReceiveMemoryWarning {

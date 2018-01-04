@@ -38,6 +38,7 @@
         [tempModel setValue:propertyValue forKey:propertyString];
     }
     
+    free(propertys);
 }
 
 

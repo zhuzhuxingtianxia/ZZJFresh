@@ -9,12 +9,16 @@
 #import "ViewController.h"
 #import "UIView+TCMEdgeSlide.h"
 #import "UIView+TCMBasketAnimation.h"
+#import "UITextField+CursorRange.h"
 
 #import "TCMFreshModel.h"
 
-@interface ViewController ()
+@interface ViewController ()<UITextFieldDelegate>
 @property(nonatomic,strong)UIButton  *moveTopButton;
 @property(nonatomic,strong)UIImageView *anImageView;
+
+@property (weak, nonatomic) IBOutlet UITextField *field;
+
 @end
 
 @implementation ViewController
@@ -37,8 +41,45 @@
     [self.moveTopButton edgeSliseWithSupView:self.view shakeLoopDuration:3.0];
     self.anImageView = [UIImageView new];
     self.anImageView.image = [UIImage imageNamed:@"mx"];
-    self.anImageView.frame = CGRectMake(200, 200, 80, 80);
+    self.anImageView.frame = CGRectMake(200, 400, 80, 80);
     [self.view addSubview:self.anImageView];
+    
+    //设置光标颜色
+    self.field.tintColor = [UIColor orangeColor];
+    [self.field addObserver:self forKeyPath:@"cursorRange" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+}
+
+#pragma mark -- UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    NSString *textStr = textField.text;
+    if (textStr.length%5 == 4 && string.length>0){
+        textField.text = [textStr stringByAppendingString:@" "];
+    }
+    
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容
+    
+    //因为中间有间隔5个就是22+5=27 才能确保是最多22位卡号数字
+    if ([toBeString length] > 27){
+        
+        textField.text = [toBeString substringToIndex:27];
+        
+        return NO;
+        
+    }
+    
+    return YES;
+}
+
+#pragma mark -- addObserver
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"cursorRange"]) {
+        NSLog(@"== %@",change);
+    }
+}
+
+-(void)dealloc{
+    
+    [self.field removeObserver:self forKeyPath:@"cursorRange"];
 }
 
 - (void)didReceiveMemoryWarning {
