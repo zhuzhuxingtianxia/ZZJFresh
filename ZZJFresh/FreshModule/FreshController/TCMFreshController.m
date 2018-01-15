@@ -101,8 +101,9 @@
             }];
             if (self.dataArray.count > 0) {
                 TCMFreshMarketModel *marketModel = self.dataArray.lastObject;
-                if (marketModel.goods.count < 6) {
-                    CGFloat footerH = (6 - marketModel.goods.count) * 85 + 5;
+                CGFloat cellCout = (self.tableView.bounds.size.height - 2 * TCM_StdLayout(45.0))/85.0;
+                if (marketModel.goods.count < cellCout) {
+                    CGFloat footerH = (cellCout - marketModel.goods.count) * 85 + 5;
                     self.footerView.frame = CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, footerH);
                     self.tableView.tableFooterView = self.footerView;
                 }
@@ -185,7 +186,7 @@
 #pragma mark TCMGoodsToBasketProtocol
 - (void)addProducts:(UIView *)goodsView goodsInfo:(id)goodsInfo{
     NSLog(@"TCMGoodsToBasketProtocol");
-    [goodsView addProductsToShopCarAnimation:self.navigationItem.rightBarButtonItem.customView];
+    [goodsView addProductsToShopCarAnimation:self.navigationItem.rightBarButtonItem.customView cartAnimation:YES];
 }
 
 #pragma  mark  UIScrollViewDelegate

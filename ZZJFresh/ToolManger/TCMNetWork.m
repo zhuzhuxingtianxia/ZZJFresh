@@ -8,6 +8,8 @@
 
 #import "TCMNetWork.h"
 
+static NSString *getJsonStringByDictionary(NSDictionary *dictionary,NSStringEncoding encoding);
+
 @implementation TCMNetWork
 //模拟请求
 +(void)sendAsyncPostHTTPRequestTo:(NSString *)interface
@@ -48,7 +50,7 @@
     
 }
 
-
+#pragma mark -- Private
 static NSString *getJsonStringByDictionary(NSDictionary *dictionary,NSStringEncoding encoding){
     if(!dictionary)return nil;
     if(!encoding)return nil;

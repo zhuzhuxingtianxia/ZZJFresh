@@ -46,10 +46,12 @@
     
     //设置光标颜色
     self.field.tintColor = [UIColor orangeColor];
-    [self.field addObserver:self forKeyPath:@"cursorRange" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    
 }
 
 #pragma mark -- UITextFieldDelegate
+
+ //MARK: 1
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     NSString *textStr = textField.text;
     if (textStr.length%5 == 4 && string.length>0){
@@ -70,16 +72,8 @@
     return YES;
 }
 
-#pragma mark -- addObserver
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:@"cursorRange"]) {
-        NSLog(@"== %@",change);
-    }
-}
-
 -(void)dealloc{
     
-    [self.field removeObserver:self forKeyPath:@"cursorRange"];
 }
 
 - (void)didReceiveMemoryWarning {

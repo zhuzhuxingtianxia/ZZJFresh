@@ -11,6 +11,8 @@
 
 @interface UIView (_TCMBasketAnimation)
 @property(nonatomic,strong)CALayer  *transitionLayer;
+@property(nonatomic,weak)UIView  *endView;
+@property(nonatomic,assign)BOOL  animate;
 
 @end
 
@@ -25,14 +27,40 @@
     return (CALayer *)objc_getAssociatedObject(self, @selector(transitionLayer));
 }
 
+- (void)setEndView:(UIView *)endView{
+    //对指定对象的弱引用
+    objc_setAssociatedObject(self, @selector(endView), endView, OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (UIView *)endView{
+    
+    return objc_getAssociatedObject(self, @selector(endView));
+}
+
+-(void)setAnimate:(BOOL)animate{
+    objc_setAssociatedObject(self, @selector(animate), [NSNumber numberWithBool:animate], OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+-(BOOL)animate{
+    
+    return [objc_getAssociatedObject(self, @selector(animate)) boolValue];
+}
+
 @end
 
 @implementation UIView (TCMBasketAnimation)
 - (void)addProductsToShopCarAnimation:(UIView*)endView{
+    
+    [self addProductsToShopCarAnimation:endView cartAnimation:NO];
+    
+}
+
+- (void)addProductsToShopCarAnimation:(UIView*)endView cartAnimation:(BOOL)animate{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     //endView.center
     CGPoint point = [endView.superview convertPoint:CGPointMake(endView.frame.origin.x + endView.frame.size.width/2, endView.frame.origin.y + endView.frame.size.height/2) toView:window];
-    
+    self.endView = endView;
+    self.animate = animate;
     [self addToBasket:window moveToPoint:point];
     
 }
@@ -98,10 +126,22 @@
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    if (self.animate) {
+        [self.endView scaleBounceAnimation];
+    }
     //动画完毕释放持有的对象
     [self.transitionLayer removeAllAnimations];
     [self.transitionLayer removeFromSuperlayer];
 }
 
+-(void)scaleBounceAnimation{
+    
+    CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+    bounceAnimation.values = @[@1.0 ,@1.4, @0.9, @1.15, @0.95, @1.02, @1.0];
+    bounceAnimation.duration = 0.6;
+    bounceAnimation.calculationMode = kCAAnimationCubic;
+    [self.layer addAnimation:bounceAnimation forKey:@"bounceAnimation"];
+    
+}
 
 @end
