@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TCMFreshSectionCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TCMFreshSectionCell" rowHeight="45" id="Cpr-Tw-5Vm" customClass="TCMFreshSectionCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cpr-Tw-5Vm" id="X8H-X4-kCb">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTq-Nn-fem">
+                        <rect key="frame" x="9" y="19" width="2" height="19"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="2" id="DTr-kH-mZO"/>
+                            <constraint firstAttribute="height" constant="19" id="aQj-70-cI2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鲜活市场" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nS8-mx-vp4">
+                        <rect key="frame" x="19" y="19" width="346" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="nS8-mx-vp4" firstAttribute="centerY" secondItem="XTq-Nn-fem" secondAttribute="centerY" id="9zp-th-vxu"/>
+                    <constraint firstItem="XTq-Nn-fem" firstAttribute="leading" secondItem="X8H-X4-kCb" secondAttribute="leading" constant="9" id="GVo-Fd-H8n"/>
+                    <constraint firstAttribute="bottom" secondItem="XTq-Nn-fem" secondAttribute="bottom" priority="999" constant="7" id="Gbx-O0-JGO"/>
+                    <constraint firstItem="XTq-Nn-fem" firstAttribute="top" secondItem="X8H-X4-kCb" secondAttribute="top" constant="19" id="az7-Xr-q16"/>
+                    <constraint firstAttribute="trailing" secondItem="nS8-mx-vp4" secondAttribute="trailing" constant="10" id="l0W-BA-RL9"/>
+                    <constraint firstItem="nS8-mx-vp4" firstAttribute="leading" secondItem="XTq-Nn-fem" secondAttribute="trailing" constant="8" id="yMu-eq-o3h"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="marketLabel" destination="nS8-mx-vp4" id="eRy-df-zdJ"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

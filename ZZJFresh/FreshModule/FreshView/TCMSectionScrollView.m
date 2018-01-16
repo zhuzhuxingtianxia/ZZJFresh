@@ -17,16 +17,24 @@
 
 @end
 @implementation TCMSectionScrollView
-
+-(instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
 - (void)awakeFromNib{
     [super awakeFromNib];
     
+    [self setup];
+}
+
+-(void)setup{
     self.backgroundColor = [UIColor whiteColor];
     
     [self addSubview:self.scrollView];
-    
 }
-
 
 - (void)setSelectIndex:(NSInteger)selectIndex{
     if (selectIndex >= self.itemsArray.count) return;

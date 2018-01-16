@@ -104,8 +104,13 @@ static BOOL change;
     
 }
 
-- (IBAction)freshEvtentAction:(id)sender {
-    [self performSegueWithIdentifier:@"freshEvent" sender:sender];
+- (IBAction)freshEvtentAction:(UIButton*)sender {
+    if (sender.tag == 1) {
+        id vc = [[NSClassFromString(@"ZJFreshController") alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        [self performSegueWithIdentifier:@"freshEvent" sender:sender];
+    }
     
 }
 

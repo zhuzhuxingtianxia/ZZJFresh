@@ -11,12 +11,6 @@
 
 @implementation TCMFreshActivityModel
 
--(void)setObjsList:(NSArray<TCMFreshMarketModel *> *)objsList{
-    
-    _objsList = [TCMFreshMarketModel mj_objectArrayWithKeyValuesArray:objsList];
-    
-}
-
 @end
 
 //////////////////////////////////////////

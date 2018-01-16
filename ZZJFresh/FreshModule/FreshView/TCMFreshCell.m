@@ -28,7 +28,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.addButton setImage:[UIImage imageNamed:@"store_huijia"] forState:UIControlStateHighlighted];
     
 }

@@ -15,11 +15,12 @@
 @interface TCMFreshActivityModel: NSObject
 /** 活动名称 */
 @property(nonatomic,copy)NSString *classify;
+/** 活动对应的索引 */
+@property(nonatomic,assign)NSUInteger activityIndex;
 /** 初始索引 */
 @property(nonatomic,assign)NSInteger startIndex;
-
-/** 市场容器 */
-@property(nonatomic,strong)NSArray<TCMFreshMarketModel *> *objsList;
+/** 结束索引 */
+@property(nonatomic,assign)NSInteger endIndex;
 
 @end
 
@@ -31,6 +32,9 @@
 
 /** 市场店铺商品集合 */
 @property(nonatomic,strong)NSArray<TCMFreshModel *> *goods;
+
+/** 用于标示cell的 Identifier*/
+@property(nonatomic,copy)NSString *cellIdentifier;
 
 @end
 
@@ -77,5 +81,7 @@
 /** 特殊状态 */
 @property(nonatomic,copy)NSString *special_status;
 
+/** 用于标示cell的 Identifier*/
+@property(nonatomic,copy)NSString *cellIdentifier;
 
 @end

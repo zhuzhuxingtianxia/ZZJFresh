@@ -70,6 +70,9 @@
     self.headerView.hidden = YES;
     self.headerView.frame = CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, TCM_StdLayout(126) + TCM_StdLayout(45.0));
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"TCMFreshSectionCell" bundle:nil] forCellReuseIdentifier:@"TCMFreshSectionCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TCMFreshCell" bundle:nil] forCellReuseIdentifier:@"TCMFreshCell"];
+    
 }
 
 -(void)loadNetWorkData{
@@ -189,7 +192,7 @@
     [goodsView addProductsToShopCarAnimation:self.navigationItem.rightBarButtonItem.customView cartAnimation:YES];
 }
 
-#pragma  mark  UIScrollViewDelegate
+#pragma  mark -- UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView == self.tableView) {
         if (_tableView.contentOffset.y >= TCM_StdLayout(126)) {
@@ -207,7 +210,7 @@
         if (scrollView.isDragging || scrollView.isDecelerating){
             NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint: CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y + TCM_StdLayout(45.0))];
             
-            if (indexPath.section != _headerBar.selectIndex) {
+            if (indexPath.section != _headerBar.selectIndex && indexPath) {
                 _headerBar.selectIndex = indexPath.section;
                 
             }
