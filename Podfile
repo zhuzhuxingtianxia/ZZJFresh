@@ -11,6 +11,7 @@ target 'ZZJFresh' do
    pod 'MJRefresh', '~> 3.1.15'
    pod 'MJExtension', '~> 3.0.13'
    pod 'SDWebImage', '~> 4.1.2'
+   pod 'SDWebImage/GIF'
 
   # Pods for ZZJFresh
 

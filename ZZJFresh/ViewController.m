@@ -113,6 +113,11 @@ static BOOL change;
     }
     
 }
+- (IBAction)dissmiss:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
 
 -(void)clickAction{
     //[self.anView addToBasket:self.view moveToPoint:CGPointMake(20, 20)];
