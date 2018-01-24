@@ -17,13 +17,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   
+    for (UIViewController *controller in self.viewControllers){
+        
+        [controller.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+        //正常图片 渲染模式
+        controller.tabBarItem.image = [controller.tabBarItem.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        //点击图片
+        controller.tabBarItem.selectedImage = [controller.tabBarItem.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (!_isLogin) {
         _isLogin = YES;
+        //present操作需要在视图加载完成之后
         [self performSegueWithIdentifier:@"present" sender:nil];
     }
     
