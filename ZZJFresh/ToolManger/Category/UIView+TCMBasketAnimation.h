@@ -15,9 +15,10 @@
 
  @param endView 购物车🛍️view
  @param animate 加入购物车后，购物车是否做动画效果
+@param finished 加入购物车动画完成回调
  */
-- (void)addProductsToShopCarAnimation:(UIView*)endView cartAnimation:(BOOL)animate;
-- (void)addProductsToShopCarAnimation:(UIView*)endView;
+- (void)addProductsToShopCarAnimation:(UIView*)endView cartAnimation:(BOOL)animate completion:(void (^)(BOOL flag))finished;
+- (void)addProductsToShopCarAnimation:(UIView*)endView completion:(void (^)(BOOL flag))finished;
 
 /**
  将当前视图在前景视图foregroundView移动到endPoint位置

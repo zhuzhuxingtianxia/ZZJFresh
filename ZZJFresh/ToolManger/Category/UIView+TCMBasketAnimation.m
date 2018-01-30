@@ -13,7 +13,7 @@
 @property(nonatomic,strong)CALayer  *transitionLayer;
 @property(nonatomic,weak)UIView  *endView;
 @property(nonatomic,assign)BOOL  animate;
-
+@property(nonatomic,copy) void (^animationFinished)(BOOL flag);
 @end
 
 @implementation UIView (_TCMBasketAnimation)
@@ -45,22 +45,36 @@
     
     return [objc_getAssociatedObject(self, @selector(animate)) boolValue];
 }
+static const void *kAnimationFinished = @"kAnimationFinishedKey";
+-(void)setAnimationFinished:(void (^)(BOOL))animationFinished{
+    objc_setAssociatedObject(self, kAnimationFinished, animationFinished, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+-(void (^)(BOOL))animationFinished{
+    return objc_getAssociatedObject(self, kAnimationFinished);
+}
 
 @end
 
 @implementation UIView (TCMBasketAnimation)
-- (void)addProductsToShopCarAnimation:(UIView*)endView{
-    
-    [self addProductsToShopCarAnimation:endView cartAnimation:NO];
+- (void)addProductsToShopCarAnimation:(UIView*)endView completion:(void (^)(BOOL flag))finished{
+   
+    [self addProductsToShopCarAnimation:endView cartAnimation:NO completion:^(BOOL flag) {
+        if (finished) {
+            finished(flag);
+        }
+        
+    }];
     
 }
 
-- (void)addProductsToShopCarAnimation:(UIView*)endView cartAnimation:(BOOL)animate{
+- (void)addProductsToShopCarAnimation:(UIView*)endView cartAnimation:(BOOL)animate completion:(void (^)(BOOL flag))finished{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     //endView.center
     CGPoint point = [endView.superview convertPoint:CGPointMake(endView.frame.origin.x + endView.frame.size.width/2, endView.frame.origin.y + endView.frame.size.height/2) toView:window];
     self.endView = endView;
     self.animate = animate;
+    self.animationFinished = finished;
     [self addToBasket:window moveToPoint:point];
     
 }
@@ -128,6 +142,9 @@
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     if (self.animate) {
         [self.endView scaleBounceAnimation];
+    }
+    if (self.animationFinished) {
+        self.animationFinished(flag);
     }
     //动画完毕释放持有的对象
     [self.transitionLayer removeAllAnimations];

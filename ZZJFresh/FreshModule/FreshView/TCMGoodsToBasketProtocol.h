@@ -11,6 +11,6 @@
 @protocol TCMGoodsToBasketProtocol <NSObject>
 @required
 
-- (void)addProducts:(UIView *)goodsView goodsInfo:(id)goodsInfo;
+- (void)addProducts:(UIView *)goodsView goodsInfo:(id)goodsInfo completion:(void (^)(BOOL flag))finished;
 
 @end

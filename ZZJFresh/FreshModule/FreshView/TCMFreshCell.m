@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 
-
+@property(nonatomic)BOOL btnEnabled;
 @end
 
 @implementation TCMFreshCell
@@ -30,7 +30,7 @@
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.addButton setImage:[UIImage imageNamed:@"store_huijia"] forState:UIControlStateHighlighted];
-    
+    self.btnEnabled = YES;
 }
 
 -(void)layoutSubviews{
@@ -59,9 +59,15 @@
     
 }
 
-- (IBAction)addGoodsToBasket:(id)sender {
+- (IBAction)addGoodsToBasket:(UIButton*)sender {
     NSLog(@"加入购物车");
-    [self.deleagte addProducts:self.imgView goodsInfo:_model];
+    if (self.btnEnabled) {
+        self.btnEnabled = NO;
+        [self.deleagte addProducts:self.imgView goodsInfo:_model completion:^(BOOL flag) {
+            self.btnEnabled = flag;
+        }];
+    }
+    
 }
 
 -(void)drawRect:(CGRect)rect{

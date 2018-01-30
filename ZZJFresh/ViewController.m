@@ -122,7 +122,9 @@ static BOOL change;
 -(void)clickAction{
     //[self.anView addToBasket:self.view moveToPoint:CGPointMake(20, 20)];
     
-    [self.anImageView addProductsToShopCarAnimation:self.moveTopButton];
+    [self.anImageView addProductsToShopCarAnimation:self.moveTopButton completion:^(BOOL flag) {
+        
+    }];
 }
 
 -(UIButton*)moveTopButton{

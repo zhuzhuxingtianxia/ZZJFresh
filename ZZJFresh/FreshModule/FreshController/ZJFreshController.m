@@ -223,9 +223,13 @@
     
 }
 #pragma mark -- TCMGoodsToBasketProtocol
-- (void)addProducts:(UIView *)goodsView goodsInfo:(id)goodsInfo{
+- (void)addProducts:(UIView *)goodsView goodsInfo:(id)goodsInfo completion:(void (^)(BOOL))finished{
     NSLog(@"TCMGoodsToBasketProtocol");
-    [goodsView addProductsToShopCarAnimation:self.navigationItem.rightBarButtonItem.customView cartAnimation:YES];
+    [goodsView addProductsToShopCarAnimation:self.navigationItem.rightBarButtonItem.customView cartAnimation:YES completion:^(BOOL flag) {
+        if (finished) {
+            finished(flag);
+        }
+    }];
 }
 
 #pragma mark -- Action
