@@ -81,7 +81,10 @@
 /** 特殊状态 */
 @property(nonatomic,copy)NSString *special_status;
 
+/*   自定义字段   */
 /** 用于标示cell的 Identifier*/
 @property(nonatomic,copy)NSString *cellIdentifier;
+/** 商品数量*/
+@property(nonatomic,copy)NSString *count;
 
 @end

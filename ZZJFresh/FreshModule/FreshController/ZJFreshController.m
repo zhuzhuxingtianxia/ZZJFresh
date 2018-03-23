@@ -12,6 +12,7 @@
 #import "TCMFreshSectionCell.h"
 #import "TCMSectionScrollView.h"
 #import "TableHeaderView.h"
+#import "BottomBasketView.h"
 //NetWork
 #import "TCMNetWork.h"
 
@@ -20,7 +21,8 @@
 #import "UIView+TCMEdgeSlide.h"
 #import "UIView+TCMBorderSide.h"
 
-@interface ZJFreshController ()<UITableViewDelegate,UITableViewDataSource,TCMGoodsToBasketProtocol,TCMSectionScrollViewDelegate>
+@interface ZJFreshController ()<UITableViewDelegate,UITableViewDataSource,
+           TCMGoodsToBasketProtocol,TCMSectionScrollViewDelegate,BottomBasketViewDelegate>
 // 右下角悬浮按钮
 @property(strong, nonatomic) UIButton  *moveTopButton;
 /// 悬浮bar
@@ -28,6 +30,7 @@
 @property(nonatomic,strong)UITableView  *tableList;
 @property(nonatomic,strong)TableHeaderView *headerView;
 @property (nonatomic,strong)UIView  *footerView;
+@property (nonatomic,strong)BottomBasketView *bastket;
 // 保存数据容器
 @property(nonatomic,strong)NSMutableArray *dataArray;
 // 滑动区头标记容器
@@ -47,7 +50,7 @@
 -(void)buildView{
     
     self.navigationItem.rightBarButtonItem = [self getBarButtonItem];
-    
+    [self buildBottomBasket];
     [self.view addSubview:self.tableList];
     
     [self.tableList registerNib:[UINib nibWithNibName:@"TCMFreshSectionCell" bundle:nil] forCellReuseIdentifier:@"TCMFreshSectionCell"];
@@ -176,6 +179,16 @@
         [alert show];
     }
 }
+#pragma mark -- BottomBasketViewDelegate
+- (id)bottomBasketView:(BottomBasketView *)view handleType:(HandleType)handleType{
+    id model = self.dataArray.lastObject;
+    return model;
+}
+
+- (void)bottomBasketView:(BottomBasketView *)view transferType:(TransferType)transferType{
+    
+}
+
 #pragma  mark  UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView == self.tableList) {
@@ -225,11 +238,20 @@
 #pragma mark -- TCMGoodsToBasketProtocol
 - (void)addProducts:(UIView *)goodsView goodsInfo:(id)goodsInfo completion:(void (^)(BOOL))finished{
     NSLog(@"TCMGoodsToBasketProtocol");
+    /*
     [goodsView addProductsToShopCarAnimation:self.navigationItem.rightBarButtonItem.customView cartAnimation:YES completion:^(BOOL flag) {
         if (finished) {
             finished(flag);
         }
     }];
+    */
+    [goodsView addProductsToShopCarAnimation:_bastket.basktLogoBtn completion:^(BOOL flag) {
+        if (finished) {
+            [_bastket addObject:goodsInfo];
+            finished(flag);
+        }
+    }];
+    
 }
 
 #pragma mark -- Action
@@ -246,7 +268,7 @@
         [_moveTopButton setImage:image forState:UIControlStateNormal];
         CGFloat bottomH = IPHONE_X ? 34 : 0;
         CGFloat navH = IPHONE_X ? 88 : 64;
-        CGFloat height = self.tabBarController.tabBar ? IPHONE_SCREEN_HEIGHT - image.size.height - 10 - self.tabBarController.tabBar.bounds.size.height - bottomH - navH: IPHONE_SCREEN_HEIGHT - image.size.height - 10 - navH - bottomH;
+        CGFloat height = self.tabBarController.tabBar ? IPHONE_SCREEN_HEIGHT - image.size.height - 50 - self.tabBarController.tabBar.bounds.size.height - bottomH - navH: IPHONE_SCREEN_HEIGHT - image.size.height - 50 - navH - bottomH;
         
         _moveTopButton.frame = CGRectMake(IPHONE_SCREEN_WIDTH - image.size.width - 10, height, image.size.width, image.size.height);
         [_moveTopButton addTarget:self action:@selector(moveTableToTop:) forControlEvents:UIControlEventTouchUpInside];
@@ -264,12 +286,18 @@
     
     return item;
 }
-
+-(void)buildBottomBasket{
+    _bastket = [BottomBasketView shareViewWithDelegate:self byType:BasketAddTypeSingle];
+    
+//    _bastket = [BottomBasketView shareViewWithDelegate:self byType:BasketAddTypeMultiple];
+    _bastket.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [self.view addSubview:_bastket];
+}
 -(UITableView*)tableList{
     if (!_tableList) {
         
         CGFloat navH = IPHONE_X ? 88 : 64;
-        CGFloat height = self.tabBarController.tabBar ? self.view.bounds.size.height - self.tabBarController.tabBar.bounds.size.height - navH: self.view.bounds.size.height - navH;
+        CGFloat height = self.tabBarController.tabBar ? self.view.bounds.size.height - self.tabBarController.tabBar.bounds.size.height - navH: self.view.bounds.size.height - navH - 50;
         
         _tableList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, height) style:UITableViewStylePlain];
         _tableList.separatorStyle = UITableViewCellSeparatorStyleNone;

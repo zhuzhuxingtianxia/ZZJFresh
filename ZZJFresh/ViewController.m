@@ -28,8 +28,9 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     [self buildView];
-    
+
 }
+
 -(void)buildView{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(10, 100, 40, 40);

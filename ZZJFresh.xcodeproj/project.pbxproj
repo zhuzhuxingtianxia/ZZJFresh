@@ -65,6 +65,9 @@
 		B63AB4A21FFDBCBA0007D9A4 /* UITextField+CursorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4A11FFDBCBA0007D9A4 /* UITextField+CursorRange.m */; };
 		B667AE94200CA3810013222E /* ZJFreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = B667AE93200CA3810013222E /* ZJFreshController.m */; };
 		B667AE97200CAE620013222E /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B667AE96200CAE620013222E /* TableHeaderView.m */; };
+		B6B40C9F2063ADA600FBAE30 /* BottomBasketView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40C9E2063ADA600FBAE30 /* BottomBasketView.m */; };
+		B6B40CA22064D60100FBAE30 /* PresentBasketList.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40CA12064D60000FBAE30 /* PresentBasketList.m */; };
+		B6B40CA52064DC4E00FBAE30 /* BadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40CA42064DC4E00FBAE30 /* BadgeButton.m */; };
 		B8B076A3314BD528FA046AD4 /* Pods_ZZJFresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762EA87747C831FEB19EE625 /* Pods_ZZJFresh.framework */; };
 /* End PBXBuildFile section */
 
@@ -184,6 +187,12 @@
 		B667AE93200CA3810013222E /* ZJFreshController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJFreshController.m; sourceTree = "<group>"; };
 		B667AE95200CAE620013222E /* TableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		B667AE96200CAE620013222E /* TableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
+		B6B40C9D2063ADA600FBAE30 /* BottomBasketView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomBasketView.h; sourceTree = "<group>"; };
+		B6B40C9E2063ADA600FBAE30 /* BottomBasketView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomBasketView.m; sourceTree = "<group>"; };
+		B6B40CA02064D60000FBAE30 /* PresentBasketList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentBasketList.h; sourceTree = "<group>"; };
+		B6B40CA12064D60000FBAE30 /* PresentBasketList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentBasketList.m; sourceTree = "<group>"; };
+		B6B40CA32064DC4E00FBAE30 /* BadgeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BadgeButton.h; sourceTree = "<group>"; };
+		B6B40CA42064DC4E00FBAE30 /* BadgeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadgeButton.m; sourceTree = "<group>"; };
 		CF0595CA9F5183F9E426279D /* Pods-ZZJFresh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZJFresh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZZJFresh/Pods-ZZJFresh.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -284,6 +293,7 @@
 				B63AB4471FF48E7C0007D9A4 /* ToolManger */,
 				B604042420171E90003E8D69 /* Launch */,
 				B63AB4481FF48F360007D9A4 /* FreshModule */,
+				B6B40C9C2063AD9200FBAE30 /* BottomBasket */,
 				B63AB4181FF48C420007D9A4 /* ViewController.h */,
 				B63AB4191FF48C420007D9A4 /* ViewController.m */,
 				B63AB41B1FF48C420007D9A4 /* Main.storyboard */,
@@ -423,6 +433,19 @@
 				B63AB4A11FFDBCBA0007D9A4 /* UITextField+CursorRange.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		B6B40C9C2063AD9200FBAE30 /* BottomBasket */ = {
+			isa = PBXGroup;
+			children = (
+				B6B40C9D2063ADA600FBAE30 /* BottomBasketView.h */,
+				B6B40C9E2063ADA600FBAE30 /* BottomBasketView.m */,
+				B6B40CA02064D60000FBAE30 /* PresentBasketList.h */,
+				B6B40CA12064D60000FBAE30 /* PresentBasketList.m */,
+				B6B40CA32064DC4E00FBAE30 /* BadgeButton.h */,
+				B6B40CA42064DC4E00FBAE30 /* BadgeButton.m */,
+			);
+			path = BottomBasket;
 			sourceTree = "<group>";
 		};
 		D97ED20C5588D90C1DB1D365 /* Pods */ = {
@@ -762,6 +785,7 @@
 				B604042A20171EE6003E8D69 /* WelcomeViewController.m in Sources */,
 				B63AB4821FF61BDB0007D9A4 /* NSObject+TCMObjectCopy.m in Sources */,
 				B604042320171D7B003E8D69 /* TabBarController.m in Sources */,
+				B6B40CA22064D60100FBAE30 /* PresentBasketList.m in Sources */,
 				B63AB4951FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m in Sources */,
 				B63AB4851FF644BB0007D9A4 /* TCMFreshNode.m in Sources */,
 				B63AB4A21FFDBCBA0007D9A4 /* UITextField+CursorRange.m in Sources */,
@@ -775,6 +799,8 @@
 				B63AB46C1FF514990007D9A4 /* UIView+TCMEdgeSlide.m in Sources */,
 				B63AB4771FF5E2D50007D9A4 /* TCMSectionScrollView.m in Sources */,
 				B63AB49B1FFCC3040007D9A4 /* UIImage+Additions.m in Sources */,
+				B6B40C9F2063ADA600FBAE30 /* BottomBasketView.m in Sources */,
+				B6B40CA52064DC4E00FBAE30 /* BadgeButton.m in Sources */,
 				B63AB4901FFB95270007D9A4 /* UIView+TCMBorderSide.m in Sources */,
 				B63AB4641FF4BBFE0007D9A4 /* UIFont+AutoLayout.m in Sources */,
 				B63AB4571FF4939D0007D9A4 /* TCMFreshModel.m in Sources */,
