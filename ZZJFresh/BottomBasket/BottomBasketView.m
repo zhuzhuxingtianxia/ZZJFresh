@@ -14,8 +14,8 @@
     NSLayoutConstraint *_catConstraint;
     NSLayoutConstraint *_handleConstraint;
     NSLayoutConstraint *_tableHeightConstraint;
-    NSInteger  totalCount;
-    CGFloat    totalPrice;
+    NSInteger  _totalCount;
+    CGFloat    _totalPrice;
 }
 @property(nonatomic,strong)BadgeButton  *basktLogoBtn;
 @property(nonatomic,strong)UIButton  *addBasketBtn;
@@ -65,7 +65,7 @@
 }
 
 -(void)addObject:(id)anObject{
-    if (self.basketAddType == BasketAddTypeMultiple) {
+    if (self.basketAddType == BasketAddTypeMultiple && anObject) {
         [self mergeShopping:anObject type:HandleTypeAdd];
         [self changeWidgetStatus];
     }
@@ -80,7 +80,7 @@
 
 -(void)buildLeftLayout{
     //购物车logo🚗
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[basktLogoBtn(40)]" options:0 metrics:@{} views:@{@"basktLogoBtn":self.basktLogoBtn}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[basktLogoBtn(50)]" options:0 metrics:@{} views:@{@"basktLogoBtn":self.basktLogoBtn}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[basktLogoBtn]-5-|" options:0 metrics:@{} views:@{@"basktLogoBtn":self.basktLogoBtn}]];
     //购物车为空的提示
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[basktLogoBtn]-5-[noneLabel]" options:0 metrics:@{} views:@{@"basktLogoBtn":self.basktLogoBtn,@"noneLabel":self.noneLabel}]];
@@ -134,7 +134,7 @@
 -(void)addBasktAction:(UIButton*)sender{
     if ([self.delegate respondsToSelector:@selector(bottomBasketView:handleType:)]) {
        id obj = [self.delegate bottomBasketView:self handleType:HandleTypeAdd];
-        if (self.basketAddType == BasketAddTypeSingle) {
+        if (self.basketAddType == BasketAddTypeSingle && obj) {
             [self mergeShopping:obj type:HandleTypeAdd];
         }
         
@@ -156,30 +156,15 @@
 }
 //展示购物车商品
 -(void)basktLogoAction:(UIButton*)sender{
-    if ([self.delegate respondsToSelector:@selector(bottomBasketView:transferType:)]) {
-        [self.delegate bottomBasketView:self transferType:TransferTypePresent];
-    }
-  
-    UIViewController *vc = (UIViewController*)self.delegate;
-    
-    if (vc.navigationController) {
-         vc.navigationController.interactivePopGestureRecognizer.enabled = NO;
-        self.dismissControl.bounds = [UIScreen mainScreen].bounds;
-        self.dismissControl.mj_x = 0;
-        self.dismissControl.mj_y = -self.mj_h;
-        [vc.navigationController.view addSubview:self.dismissControl];
+   
+    if (sender.selected) {
+        [self animatedOut];
+    }else{
+        if ([self.delegate respondsToSelector:@selector(bottomBasketView:transferType:)]) {
+            [self.delegate bottomBasketView:self transferType:TransferTypePresent];
+        }
         
-        self.tableList.dataSource = self.dataSource;
-        [self.dismissControl addSubview:self.tableList];
-        [self.dismissControl addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableList]|" options:0 metrics:@{} views:@{@"tableList":self.tableList}]];
-        NSArray *tableLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[tableList(height)]|" options:0 metrics:@{@"height":@0} views:@{@"tableList":self.tableList}];
-        _tableHeightConstraint = [self constraintLayout:tableLayoutArray layoutAttribute:NSLayoutAttributeHeight];
-        [self.dismissControl addConstraints:tableLayoutArray];
-        [self.dismissControl layoutIfNeeded];
-        [UIView animateWithDuration:0.3 animations:^{
-            _tableHeightConstraint.constant = _tableList.tableH;
-            [self.dismissControl layoutIfNeeded];
-        }];
+        [self animatedIn];
     }
     
 }
@@ -197,9 +182,10 @@
 
 -(void)changeWidgetStatus{
     
-    self.countLabel.text = [NSString stringWithFormat:@"%ld",totalCount];
-    if (totalCount>0) {
-        [self.basktLogoBtn setBadge:[NSString stringWithFormat:@"%ld",totalCount]];
+    self.countLabel.text = [NSString stringWithFormat:@"%ld",_totalCount];
+    self.priceLabel.text = [NSString stringWithFormat:@"¥%.2f",_totalPrice];
+    if (_totalCount>0) {
+        [self.basktLogoBtn setBadge:[NSString stringWithFormat:@"%ld",_totalCount]];
     }else{
        [self.basktLogoBtn setBadge:nil];
     }
@@ -283,12 +269,35 @@
         }
         [self.dataSource addObject:ojc];
     }
-    totalCount = 0;
-   for (id subObj in self.dataSource) {
+    
+    _totalCount = [self shopTotalCount];
+    _totalPrice = [self shopTotalPrice];
+    
+}
+
+-(NSInteger)shopTotalCount{
+    NSInteger totalCounts = 0;
+    for (id subObj in self.dataSource) {
         NSInteger counts = [[subObj valueForKey:@"count"] integerValue];
-        totalCount += counts;
+        totalCounts += counts;
     }
     
+    return totalCounts;
+}
+
+-(CGFloat)shopTotalPrice{
+    CGFloat shopTotalPrice = 0;
+    NSDecimalNumber *totalPriceNumber = [NSDecimalNumber decimalNumberWithString:@"0"];
+    for (id subObj in self.dataSource) {
+        NSDecimalNumber *priceNumber = [NSDecimalNumber decimalNumberWithString:[subObj valueForKey:@"discount_price"]];
+        NSDecimalNumber *countNumber = [NSDecimalNumber decimalNumberWithString:[subObj valueForKey:@"count"]];
+        
+        NSDecimalNumber *singleShopTotalPrice = [priceNumber decimalNumberByMultiplyingBy:countNumber];
+       totalPriceNumber = [totalPriceNumber decimalNumberByAdding:singleShopTotalPrice];
+        
+    }
+    shopTotalPrice = totalPriceNumber.doubleValue;
+    return shopTotalPrice;
 }
 
 -(NSLayoutConstraint*)constraintLayout:(NSArray<NSLayoutConstraint*>*)layouts layoutAttribute:(NSLayoutAttribute)attribute{
@@ -302,6 +311,30 @@
     }
     return layoutConstraint;
 }
+- (void)animatedIn{
+    UIViewController *vc = (UIViewController*)self.delegate;
+    
+    if (vc.navigationController) {
+        vc.navigationController.interactivePopGestureRecognizer.enabled = NO;
+        self.dismissControl.bounds = [UIScreen mainScreen].bounds;
+        self.dismissControl.mj_x = 0;
+        self.dismissControl.mj_y = -self.mj_h;
+        [vc.navigationController.view addSubview:self.dismissControl];
+        
+        self.tableList.dataSource = self.dataSource;
+        [self.dismissControl addSubview:self.tableList];
+        [self.dismissControl addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableList]|" options:0 metrics:@{} views:@{@"tableList":self.tableList}]];
+        NSArray *tableLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[tableList(height)]|" options:0 metrics:@{@"height":@0} views:@{@"tableList":self.tableList}];
+        _tableHeightConstraint = [self constraintLayout:tableLayoutArray layoutAttribute:NSLayoutAttributeHeight];
+        [self.dismissControl addConstraints:tableLayoutArray];
+        [self.dismissControl layoutIfNeeded];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.basktLogoBtn.selected = !self.basktLogoBtn.selected;
+            _tableHeightConstraint.constant = _tableList.tableH;
+            [self.dismissControl layoutIfNeeded];
+        }];
+    }
+}
 //隐藏购物车列表
 - (void)animatedOut {
     [UIView animateWithDuration:.3 animations:^{
@@ -309,6 +342,7 @@
         [self.dismissControl layoutIfNeeded];
     } completion:^(BOOL finished) {
         if (finished) {
+            self.basktLogoBtn.selected = !self.basktLogoBtn.selected;
             UIViewController *vc = (UIViewController*)self.delegate;
             if (vc.navigationController) {
                 vc.navigationController.interactivePopGestureRecognizer.enabled = YES;

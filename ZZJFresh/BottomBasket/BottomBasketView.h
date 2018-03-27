@@ -54,6 +54,17 @@ NS_ASSUME_NONNULL_BEGIN
 +(instancetype)shareViewWithDelegate:(id)delegate byType:(BasketAddType)basketAddType;
 
 /**
+ 为了能够添加不同的商品模型，添加一下属性以方便采用kvc的方式
+ 获取到属性值
+ */
+//商品模型ID对应的键key
+@property(nonatomic,copy)NSString *Id;
+//商品模型单价对应的键key
+@property(nonatomic,copy)NSString *price;
+//商品模型数量对应的键key
+@property(nonatomic,copy)NSString *count;
+
+/**
  添加对象到购物车
 
  @param anObject 要添加的对象

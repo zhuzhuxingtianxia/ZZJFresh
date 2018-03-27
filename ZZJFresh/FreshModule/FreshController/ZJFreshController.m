@@ -181,7 +181,10 @@
 }
 #pragma mark -- BottomBasketViewDelegate
 - (id)bottomBasketView:(BottomBasketView *)view handleType:(HandleType)handleType{
-    id model = self.dataArray.lastObject;
+    id model = self.dataArray.firstObject;
+    if ([model isKindOfClass:[TCMFreshMarketModel class]]) {
+        model = ((TCMFreshMarketModel*)model).goods.firstObject;
+    }
     return model;
 }
 
@@ -245,7 +248,7 @@
         }
     }];
     */
-    [goodsView addProductsToShopCarAnimation:_bastket.basktLogoBtn completion:^(BOOL flag) {
+    [goodsView addProductsToShopCarAnimation:(UIView*)_bastket.basktLogoBtn completion:^(BOOL flag) {
         if (finished) {
             [_bastket addObject:goodsInfo];
             finished(flag);
