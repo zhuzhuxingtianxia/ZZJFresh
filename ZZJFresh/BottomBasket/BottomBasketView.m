@@ -9,7 +9,7 @@
 #import "BottomBasketView.h"
 #import "BadgeButton.h"
 #import "PresentBasketList.h"
-@interface BottomBasketView ()
+@interface BottomBasketView ()<TCMGoodsToBasketProtocol>
 {
     NSLayoutConstraint *_catConstraint;
     NSLayoutConstraint *_handleConstraint;
@@ -55,6 +55,9 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+        self.Id = @"Id";
+        self.currentPrice = @"currentPrice";
+        self.count = @"count";
     }
     return self;
 }
@@ -128,7 +131,11 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
 }
-
+#pragma mark --TCMGoodsToBasketProtocol
+- (void)addProducts:(UIView *)goodsView goodsInfo:(id)goodsInfo completion:(void (^)(BOOL flag))finished{
+    [self addObject:goodsInfo];
+    
+}
 #pragma mark -- Action
 //加入购物车
 -(void)addBasktAction:(UIButton*)sender{
@@ -243,8 +250,8 @@
 -(void)mergeShopping:(id)ojc type:(HandleType)addOrReduce{
     
     for (id subObj in self.dataSource) {
-        if ([subObj valueForKey:@"Id"] == [ojc valueForKey:@"Id"]) {
-            NSInteger counts = [[subObj valueForKey:@"count"] integerValue];
+        if ([subObj valueForKey:self.Id] == [ojc valueForKey:self.Id]) {
+            NSInteger counts = [[subObj valueForKey:self.count] integerValue];
             if (addOrReduce == HandleTypeAdd) {
                 counts = counts+1;
                 ojc = nil;
@@ -252,7 +259,7 @@
                 counts = counts-1;
                 ojc = nil;
             }
-            [subObj setValue:[NSString stringWithFormat:@"%ld",counts] forKey:@"count"];
+            [subObj setValue:[NSString stringWithFormat:@"%ld",counts] forKey:self.count];
             
             if (counts <= 0) {
                 [self.dataSource removeObject:subObj];
@@ -263,9 +270,9 @@
     }
     
     if (ojc && addOrReduce == HandleTypeAdd) {
-        NSInteger counts = [[ojc valueForKey:@"count"] integerValue];
+        NSInteger counts = [[ojc valueForKey:self.count] integerValue];
         if (counts < 1) {
-            [ojc setValue:[NSString stringWithFormat:@"1"] forKey:@"count"];
+            [ojc setValue:[NSString stringWithFormat:@"1"] forKey:self.count];
         }
         [self.dataSource addObject:ojc];
     }
@@ -278,7 +285,7 @@
 -(NSInteger)shopTotalCount{
     NSInteger totalCounts = 0;
     for (id subObj in self.dataSource) {
-        NSInteger counts = [[subObj valueForKey:@"count"] integerValue];
+        NSInteger counts = [[subObj valueForKey:self.count] integerValue];
         totalCounts += counts;
     }
     
@@ -289,8 +296,8 @@
     CGFloat shopTotalPrice = 0;
     NSDecimalNumber *totalPriceNumber = [NSDecimalNumber decimalNumberWithString:@"0"];
     for (id subObj in self.dataSource) {
-        NSDecimalNumber *priceNumber = [NSDecimalNumber decimalNumberWithString:[subObj valueForKey:@"discount_price"]];
-        NSDecimalNumber *countNumber = [NSDecimalNumber decimalNumberWithString:[subObj valueForKey:@"count"]];
+        NSDecimalNumber *priceNumber = [NSDecimalNumber decimalNumberWithString:[subObj valueForKey:self.currentPrice]];
+        NSDecimalNumber *countNumber = [NSDecimalNumber decimalNumberWithString:[subObj valueForKey:self.count]];
         
         NSDecimalNumber *singleShopTotalPrice = [priceNumber decimalNumberByMultiplyingBy:countNumber];
        totalPriceNumber = [totalPriceNumber decimalNumberByAdding:singleShopTotalPrice];
@@ -330,6 +337,7 @@
         [self.dismissControl layoutIfNeeded];
         [UIView animateWithDuration:0.3 animations:^{
             self.basktLogoBtn.selected = !self.basktLogoBtn.selected;
+            
             _tableHeightConstraint.constant = _tableList.tableH;
             [self.dismissControl layoutIfNeeded];
         }];
@@ -497,6 +505,7 @@
     if (!_tableList) {
         _tableList = [PresentBasketList new];
         _tableList.translatesAutoresizingMaskIntoConstraints = NO;
+        _tableList.deleagte = self;
     }
     return _tableList;
 }

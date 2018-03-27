@@ -8,7 +8,7 @@
 
 #import "PresentBasketList.h"
 #import "TCMFreshCell.h"
-@interface PresentBasketList ()<UITableViewDataSource,UITableViewDelegate>
+@interface PresentBasketList ()<UITableViewDataSource,UITableViewDelegate,TCMGoodsToBasketProtocol>
 @property(nonatomic,strong)UIView  *topView;
 @property(nonatomic,strong)UITableView  *tableList;
 @property(nonatomic,assign)CGFloat  tableH;
@@ -27,7 +27,11 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     self.topView.frame = CGRectMake(0, 0, self.mj_w, 40);
-    self.tableList.frame = CGRectMake(0, CGRectGetMaxY(self.topView.frame), self.mj_w, self.dataSource.count*self.tableList.rowHeight);
+    CGFloat totalCellH = self.dataSource.count*self.tableList.rowHeight;
+     CGFloat tableH = totalCellH > [UIScreen mainScreen].bounds.size.height*0.55 ? [UIScreen mainScreen].bounds.size.height*0.55:totalCellH;
+    
+    self.tableList.frame = CGRectMake(0, CGRectGetMaxY(self.topView.frame), self.mj_w, tableH);
+    
     self.mj_h = CGRectGetMaxY(self.tableList.frame);
     
     self.tableH = self.mj_h;
@@ -49,6 +53,7 @@
     if ([model isKindOfClass:[TCMFreshModel class]]){
         cell = [tableView dequeueReusableCellWithIdentifier:((TCMFreshModel*)model).cellIdentifier];
         ((TCMFreshCell*)cell).model = model;
+        ((TCMFreshCell*)cell).deleagte = self;
     }
     
     return cell;
@@ -57,6 +62,17 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    
+}
+#pragma mark -- TCMGoodsToBasketProtocol
+- (void)addProducts:(UIView *)goodsView goodsInfo:(id)goodsInfo completion:(void (^)(BOOL flag))finished{
+    if (finished) {
+        finished(YES);
+        if ([self.deleagte respondsToSelector:@selector(addProducts:goodsInfo:completion:)]) {
+            [self.deleagte addProducts:self goodsInfo:goodsInfo completion:^(BOOL flag) {
+                
+            }];
+        }
+    }
 }
 
 #pragma mark -- getter

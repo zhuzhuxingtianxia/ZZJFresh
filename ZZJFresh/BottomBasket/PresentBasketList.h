@@ -7,14 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+// TCMGoodsToBasketProtocol
+#import "TCMGoodsToBasketProtocol.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PresentBasketList : UIView
+@interface PresentBasketList : UIView<TCMGoodsToBasketProtocol>
 
 /**
  展示数据
  */
 @property(nonatomic,strong,nonnull)NSMutableArray  *dataSource;
+
+/**
+ 加入购物车代理
+ */
+@property(nonatomic,weak)id <TCMGoodsToBasketProtocol> deleagte;
 
 /**
  模态视图的高度

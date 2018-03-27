@@ -290,10 +290,11 @@
     return item;
 }
 -(void)buildBottomBasket{
-    _bastket = [BottomBasketView shareViewWithDelegate:self byType:BasketAddTypeSingle];
+//    _bastket = [BottomBasketView shareViewWithDelegate:self byType:BasketAddTypeSingle];
     
-//    _bastket = [BottomBasketView shareViewWithDelegate:self byType:BasketAddTypeMultiple];
+    _bastket = [BottomBasketView shareViewWithDelegate:self byType:BasketAddTypeMultiple];
     _bastket.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    _bastket.currentPrice = @"discount_price";
     [self.view addSubview:_bastket];
 }
 -(UITableView*)tableList{

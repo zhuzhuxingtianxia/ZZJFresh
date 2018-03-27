@@ -5,6 +5,10 @@
 //  Created by ZZJ on 2018/3/22.
 //  Copyright © 2018年 Jion. All rights reserved.
 //
+/*
+ 这是一种思想，还有一种思想就是所有的处理由列表来处理，
+ 返回商品数量，总价格和满减说明。
+ */
 
 #import <UIKit/UIKit.h>
 typedef NS_ENUM(NSUInteger, TransferType) {
@@ -57,11 +61,11 @@ NS_ASSUME_NONNULL_BEGIN
  为了能够添加不同的商品模型，添加一下属性以方便采用kvc的方式
  获取到属性值
  */
-//商品模型ID对应的键key
+//商品模型ID对应的键key，默认“Id”
 @property(nonatomic,copy)NSString *Id;
-//商品模型单价对应的键key
-@property(nonatomic,copy)NSString *price;
-//商品模型数量对应的键key
+//商品模型单价对应的键key，默认“currentPrice”
+@property(nonatomic,copy)NSString *currentPrice;
+//商品模型数量对应的键key，默认“count”
 @property(nonatomic,copy)NSString *count;
 
 /**
