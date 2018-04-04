@@ -332,7 +332,7 @@
         vc.navigationController.interactivePopGestureRecognizer.enabled = NO;
         self.dismissControl.bounds = [UIScreen mainScreen].bounds;
         self.dismissControl.mj_x = 0;
-        self.dismissControl.mj_y = -self.mj_h;
+        self.dismissControl.mj_y = -(self.mj_h + IPHONE_HOME_INDICATOR_HEIGHT);
         [vc.navigationController.view addSubview:self.dismissControl];
         
         self.tableList.dataSource = self.dataSource;

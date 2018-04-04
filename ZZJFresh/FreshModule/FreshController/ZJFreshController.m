@@ -43,6 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
     [self buildView];
     
     [self loadNetWorkData];
@@ -301,7 +302,7 @@
     if (!_tableList) {
         
         CGFloat navH = IPHONE_X ? 88 : 64;
-        CGFloat height = self.tabBarController.tabBar ? self.view.bounds.size.height - self.tabBarController.tabBar.bounds.size.height - navH: self.view.bounds.size.height - navH - 50;
+        CGFloat height = self.view.bounds.size.height - navH -IPHONE_HOME_INDICATOR_HEIGHT - 50;
         
         _tableList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, height) style:UITableViewStylePlain];
         _tableList.separatorStyle = UITableViewCellSeparatorStyleNone;
