@@ -424,7 +424,7 @@
         _handleView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:_handleView];
         
-        [_handleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[reduceBtn][countLabel][addToBtn]|" options:0 metrics:@{} views:@{@"reduceBtn":self.reduceBtn,@"countLabel":self.countLabel,@"addToBtn":self.addToBtn}]];
+        [_handleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[reduceBtn][countLabel(>=20)][addToBtn]|" options:0 metrics:@{} views:@{@"reduceBtn":self.reduceBtn,@"countLabel":self.countLabel,@"addToBtn":self.addToBtn}]];
         [_handleView addConstraint:[NSLayoutConstraint constraintWithItem:self.reduceBtn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_handleView attribute:NSLayoutAttributeWidth multiplier:0.3 constant:0]];
         [_handleView addConstraint:[NSLayoutConstraint constraintWithItem:self.addToBtn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_handleView attribute:NSLayoutAttributeWidth multiplier:0.3 constant:0]];
         [_handleView addConstraint:[NSLayoutConstraint constraintWithItem:self.countLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_handleView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
@@ -440,7 +440,7 @@
     if (!_addToBtn) {
         _addToBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _addToBtn.translatesAutoresizingMaskIntoConstraints = NO;
-        [_addToBtn setImage:[UIImage imageNamed:@"store_da"] forState:UIControlStateNormal];
+        [_addToBtn setImage:[UIImage imageNamed:@"kep_plus"] forState:UIControlStateNormal];
         [_addToBtn addTarget:self action:@selector(addBasktAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.handleView addSubview:_addToBtn];
     }
@@ -451,7 +451,7 @@
     if (!_reduceBtn) {
         _reduceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _reduceBtn.translatesAutoresizingMaskIntoConstraints = NO;
-        [_reduceBtn setImage:[UIImage imageNamed:@"store_huijia"] forState:UIControlStateNormal];
+        [_reduceBtn setImage:[UIImage imageNamed:@"kep_reduce"] forState:UIControlStateNormal];
         [_reduceBtn addTarget:self action:@selector(reduceBasktAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.handleView addSubview:_reduceBtn];
     }
