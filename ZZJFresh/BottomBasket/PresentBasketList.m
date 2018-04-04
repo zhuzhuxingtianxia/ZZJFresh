@@ -10,6 +10,7 @@
 #import "TCMFreshCell.h"
 @interface PresentBasketList ()<UITableViewDataSource,UITableViewDelegate,TCMGoodsToBasketProtocol>
 @property(nonatomic,strong)UIView  *topView;
+@property(nonatomic,strong)UIButton  *clearBtn;
 @property(nonatomic,strong)UITableView  *tableList;
 @property(nonatomic,assign)CGFloat  tableH;
 @end
@@ -19,6 +20,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.topView];
+        [_topView addSubview:self.clearBtn];
         [self addSubview:self.tableList];
     }
     return self;
@@ -27,6 +29,7 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     self.topView.frame = CGRectMake(0, 0, self.mj_w, 40);
+    self.clearBtn.frame = CGRectMake(CGRectGetWidth(self.topView.frame) - 100, 0, 80, 40);
     CGFloat totalCellH = self.dataSource.count*self.tableList.rowHeight;
      CGFloat tableH = totalCellH > [UIScreen mainScreen].bounds.size.height*0.55 ? [UIScreen mainScreen].bounds.size.height*0.55:totalCellH;
     
@@ -74,6 +77,12 @@
         }
     }
 }
+#pragma mark --Action
+-(void)clearShopCatAction:(id)sender{
+    if ([self.deleagte respondsToSelector:@selector(presentBasketList:handleType:)]) {
+        [self.deleagte presentBasketList:self handleType:HandleTypeClearn];
+    }
+}
 
 #pragma mark -- getter
 -(UITableView*)tableList{
@@ -94,9 +103,20 @@
 -(UIView*)topView{
     if (!_topView) {
         _topView = [UIView new];
-        _topView.backgroundColor = [UIColor orangeColor];
+        _topView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }
     return _topView;
+}
+
+-(UIButton*)clearBtn{
+    if (!_clearBtn) {
+        _clearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_clearBtn setTitle:@"清空购物车" forState:UIControlStateNormal];
+        _clearBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        [_clearBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [_clearBtn addTarget:self action:@selector(clearShopCatAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _clearBtn;
 }
 
 @end

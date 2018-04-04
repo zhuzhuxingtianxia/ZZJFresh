@@ -9,9 +9,23 @@
 #import <UIKit/UIKit.h>
 // TCMGoodsToBasketProtocol
 #import "TCMGoodsToBasketProtocol.h"
+#import "BottomBasketView.h"
 NS_ASSUME_NONNULL_BEGIN
+@class PresentBasketList;
+@protocol PresentBasketListDelegate <TCMGoodsToBasketProtocol>
+@optional
+/**
+ 视图中加入和减去商品的操作，仅BasketAddTypeSingle类型使用
+ 
+ @param view BottomBasketView对象
+ @param handleType 操作类型
+ 
+ */
+- (void)presentBasketList:(PresentBasketList *)view handleType:(HandleType)handleType;
 
-@interface PresentBasketList : UIView<TCMGoodsToBasketProtocol>
+
+@end
+@interface PresentBasketList : UIView
 
 /**
  展示数据
@@ -21,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  加入购物车代理
  */
-@property(nonatomic,weak)id <TCMGoodsToBasketProtocol> deleagte;
+@property(nonatomic,weak)id <PresentBasketListDelegate> deleagte;
 
 /**
  模态视图的高度

@@ -9,7 +9,7 @@
 #import "BottomBasketView.h"
 #import "BadgeButton.h"
 #import "PresentBasketList.h"
-@interface BottomBasketView ()<TCMGoodsToBasketProtocol>
+@interface BottomBasketView ()<PresentBasketListDelegate>
 {
     NSLayoutConstraint *_catConstraint;
     NSLayoutConstraint *_handleConstraint;
@@ -68,11 +68,16 @@
 }
 
 -(void)addObject:(id)anObject{
-    if (self.basketAddType == BasketAddTypeMultiple && anObject) {
+    if (anObject) {
         [self mergeShopping:anObject type:HandleTypeAdd];
         [self changeWidgetStatus];
     }
-    
+}
+-(void)reduceObject:(id)anObject{
+    if (anObject) {
+        [self mergeShopping:anObject type:HandleTypeReduce];
+        [self changeWidgetStatus];
+    }
 }
 
 -(void)buildLayout{
@@ -124,28 +129,31 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[addBasketBtn]|" options:0 metrics:@{} views:@{@"addBasketBtn":self.addBasketBtn}]];
 }
 
--(void)updateConstraints{
-    [super updateConstraints];
-}
-
--(void)layoutSubviews{
-    [super layoutSubviews];
-}
 #pragma mark --TCMGoodsToBasketProtocol
 - (void)addProducts:(UIView *)goodsView goodsInfo:(id)goodsInfo completion:(void (^)(BOOL flag))finished{
     [self addObject:goodsInfo];
     
 }
+#pragma mark -- PresentBasketListDelegate
+- (void)presentBasketList:(PresentBasketList *)view handleType:(HandleType)handleType{
+    //服务器交互删除所有数据
+    [self.dataSource removeAllObjects];
+    _totalCount = [self shopTotalCount];
+    _totalPrice = [self shopTotalPrice];
+    
+    [self changeWidgetStatus];
+    [self animatedOut];
+}
+
 #pragma mark -- Action
 //加入购物车
 -(void)addBasktAction:(UIButton*)sender{
     if ([self.delegate respondsToSelector:@selector(bottomBasketView:handleType:)]) {
        id obj = [self.delegate bottomBasketView:self handleType:HandleTypeAdd];
-        if (self.basketAddType == BasketAddTypeSingle && obj) {
-            [self mergeShopping:obj type:HandleTypeAdd];
+        if (obj) {
+            [self addObject:obj];
         }
         
-        [self changeWidgetStatus];
     }
     
 }
@@ -153,11 +161,10 @@
 -(void)reduceBasktAction:(UIButton*)sender{
     if ([self.delegate respondsToSelector:@selector(bottomBasketView:handleType:)]) {
         id obj =[self.delegate bottomBasketView:self handleType:HandleTypeReduce];
-        if (self.basketAddType == BasketAddTypeSingle) {
-            [self mergeShopping:obj type:HandleTypeReduce];
+        if (obj) {
+            [self reduceObject:obj];
         }
         
-        [self changeWidgetStatus];
     }
     
 }

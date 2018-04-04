@@ -75,6 +75,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void)addObject:(id)anObject;
 /**
+ 减去中的购物车对象
+ 
+ @param anObject 要减去的对象
+ */
+-(void)reduceObject:(id)anObject;
+
+/**
  购物车图标
  */
 @property(nonatomic,readonly)BadgeButton  *basktLogoBtn;
