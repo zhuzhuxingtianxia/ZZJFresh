@@ -18,7 +18,7 @@
 #import <Foundation/Foundation.h>
 
 // category
-#import "UIFont+AutoLayout.h"
+#import "UIFont+AutoMatch.h"
 
 //SDWebImage
 #import "UIImageView+WebCache.h"

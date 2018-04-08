@@ -101,18 +101,10 @@ for (NSLayoutConstraint *layout in array) {\
  */
 #define TCM_LayoutFont(label) label.font = TCM_Font(label.font.pointSize);
 
-#define TCM_Font(fontSize)                          [UIFont tcmFontOfSize:fontSize]
-#define TCM_FontEx(fontSize1,fontSize2,fontSize3)   \
-[UIFont tcmFontOfiPhoneSize:fontSize1   \
-              iPhoneStdSize:fontSize2   \
-             iPhonePlusSize:fontSize3]
+#define TCM_Font(fontSize)                          [UIFont fontOfSize:fontSize]
 
 
-#define TCM_BFont(fontSize)                         [UIFont tcmBFontOfSize:fontSize]
-#define TCM_BFontEx(fontSize1,fontSize2,fontSize3)  \
-[UIFont tcmBFontOfiPhoneSize:fontSize1  \
-               iPhoneStdSize:fontSize2  \
-              iPhonePlusSize:fontSize3]
+#define TCM_BFont(fontSize)                         [UIFont boldFontOfSize:fontSize]
 
 
 #define TCM_SetFontForLabelArr(labelArr,Font)       \
@@ -128,8 +120,8 @@ for (UILabel *label in labelArr) {\
 
 /*金额
  */
-#define TCM_Font_CashN1 [UIFont tcmFontOfSize:13.0]
-#define TCM_Font_CashN2 [UIFont tcmFontOfSize:11.0]
+#define TCM_Font_CashN1 [UIFont fontOfSize:13.0]
+#define TCM_Font_CashN2 [UIFont fontOfSize:11.0]
 
 
 #endif /* TCM_Configuration_h */

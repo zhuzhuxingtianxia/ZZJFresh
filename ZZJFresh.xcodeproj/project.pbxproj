@@ -38,6 +38,7 @@
 		B6040458201743DB003E8D69 /* home_basket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6040444201743DB003E8D69 /* home_basket@2x.png */; };
 		B61A4B44206CB1DF00B78139 /* UIView+TransformPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A4B42206CB1DF00B78139 /* UIView+TransformPI.m */; };
 		B61A4B74207A34EB00B78139 /* UIColor+HexConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A4B73207A34EB00B78139 /* UIColor+HexConvert.m */; };
+		B61A4B77207A387B00B78139 /* UIFont+AutoMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A4B76207A387B00B78139 /* UIFont+AutoMatch.m */; };
 		B63AB41A1FF48C420007D9A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4191FF48C420007D9A4 /* ViewController.m */; };
 		B63AB41D1FF48C420007D9A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63AB41B1FF48C420007D9A4 /* Main.storyboard */; };
 		B63AB41F1FF48C420007D9A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63AB41E1FF48C420007D9A4 /* Assets.xcassets */; };
@@ -50,7 +51,6 @@
 		B63AB4571FF4939D0007D9A4 /* TCMFreshModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4561FF4939D0007D9A4 /* TCMFreshModel.m */; };
 		B63AB45B1FF4B6070007D9A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB45A1FF4B6060007D9A4 /* AppDelegate.m */; };
 		B63AB45E1FF4B63C0007D9A4 /* TCMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB45D1FF4B63C0007D9A4 /* TCMNavigationController.m */; };
-		B63AB4641FF4BBFE0007D9A4 /* UIFont+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4631FF4BBFE0007D9A4 /* UIFont+AutoLayout.m */; };
 		B63AB46C1FF514990007D9A4 /* UIView+TCMEdgeSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB46B1FF514990007D9A4 /* UIView+TCMEdgeSlide.m */; };
 		B63AB46F1FF514DA0007D9A4 /* UIView+TCMBasketAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB46E1FF514DA0007D9A4 /* UIView+TCMBasketAnimation.m */; };
 		B63AB4771FF5E2D50007D9A4 /* TCMSectionScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4751FF5E2D50007D9A4 /* TCMSectionScrollView.m */; };
@@ -134,6 +134,8 @@
 		B61A4B43206CB1DF00B78139 /* UIView+TransformPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TransformPI.h"; sourceTree = "<group>"; };
 		B61A4B72207A34EB00B78139 /* UIColor+HexConvert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexConvert.h"; sourceTree = "<group>"; };
 		B61A4B73207A34EB00B78139 /* UIColor+HexConvert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexConvert.m"; sourceTree = "<group>"; };
+		B61A4B75207A387B00B78139 /* UIFont+AutoMatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+AutoMatch.h"; sourceTree = "<group>"; };
+		B61A4B76207A387B00B78139 /* UIFont+AutoMatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AutoMatch.m"; sourceTree = "<group>"; };
 		B63AB4121FF48C420007D9A4 /* ZZJFresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZZJFresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63AB4181FF48C420007D9A4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B63AB4191FF48C420007D9A4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -161,8 +163,6 @@
 		B63AB45C1FF4B63C0007D9A4 /* TCMNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMNavigationController.h; sourceTree = "<group>"; };
 		B63AB45D1FF4B63C0007D9A4 /* TCMNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMNavigationController.m; sourceTree = "<group>"; };
 		B63AB4601FF4B7F50007D9A4 /* TCMPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMPrefixHeader.pch; sourceTree = "<group>"; };
-		B63AB4621FF4BBFE0007D9A4 /* UIFont+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AutoLayout.h"; sourceTree = "<group>"; };
-		B63AB4631FF4BBFE0007D9A4 /* UIFont+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AutoLayout.m"; sourceTree = "<group>"; };
 		B63AB46A1FF514990007D9A4 /* UIView+TCMEdgeSlide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+TCMEdgeSlide.h"; sourceTree = "<group>"; };
 		B63AB46B1FF514990007D9A4 /* UIView+TCMEdgeSlide.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+TCMEdgeSlide.m"; sourceTree = "<group>"; };
 		B63AB46D1FF514DA0007D9A4 /* UIView+TCMBasketAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+TCMBasketAnimation.h"; sourceTree = "<group>"; };
@@ -421,8 +421,6 @@
 		B63AB4611FF4BBDE0007D9A4 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				B63AB4621FF4BBFE0007D9A4 /* UIFont+AutoLayout.h */,
-				B63AB4631FF4BBFE0007D9A4 /* UIFont+AutoLayout.m */,
 				B63AB46A1FF514990007D9A4 /* UIView+TCMEdgeSlide.h */,
 				B63AB46B1FF514990007D9A4 /* UIView+TCMEdgeSlide.m */,
 				B63AB46D1FF514DA0007D9A4 /* UIView+TCMBasketAnimation.h */,
@@ -441,6 +439,8 @@
 				B61A4B42206CB1DF00B78139 /* UIView+TransformPI.m */,
 				B61A4B72207A34EB00B78139 /* UIColor+HexConvert.h */,
 				B61A4B73207A34EB00B78139 /* UIColor+HexConvert.m */,
+				B61A4B75207A387B00B78139 /* UIFont+AutoMatch.h */,
+				B61A4B76207A387B00B78139 /* UIFont+AutoMatch.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -808,13 +808,13 @@
 				B667AE94200CA3810013222E /* ZJFreshController.m in Sources */,
 				B63AB47A1FF5E9B10007D9A4 /* TCMNetWork.m in Sources */,
 				B63AB4511FF4915D0007D9A4 /* TCMFreshController.m in Sources */,
+				B61A4B77207A387B00B78139 /* UIFont+AutoMatch.m in Sources */,
 				B63AB46C1FF514990007D9A4 /* UIView+TCMEdgeSlide.m in Sources */,
 				B63AB4771FF5E2D50007D9A4 /* TCMSectionScrollView.m in Sources */,
 				B63AB49B1FFCC3040007D9A4 /* UIImage+Additions.m in Sources */,
 				B6B40C9F2063ADA600FBAE30 /* BottomBasketView.m in Sources */,
 				B6B40CA52064DC4E00FBAE30 /* BadgeButton.m in Sources */,
 				B63AB4901FFB95270007D9A4 /* UIView+TCMBorderSide.m in Sources */,
-				B63AB4641FF4BBFE0007D9A4 /* UIFont+AutoLayout.m in Sources */,
 				B63AB4571FF4939D0007D9A4 /* TCMFreshModel.m in Sources */,
 				B63AB45B1FF4B6070007D9A4 /* AppDelegate.m in Sources */,
 			);
