@@ -42,7 +42,7 @@
     [self.moveTopButton edgeSliseWithSupView:self.view shakeLoopDuration:3.0];
     self.anImageView = [UIImageView new];
     self.anImageView.image = [UIImage imageNamed:@"mx"];
-    self.anImageView.frame = CGRectMake(200, 400, 80, 80);
+    self.anImageView.frame = CGRectMake(150, 200, 80, 80);
     [self.view addSubview:self.anImageView];
     
     //设置光标颜色

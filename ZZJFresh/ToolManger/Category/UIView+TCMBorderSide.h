@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 /// 边框类型(位移枚举)
-typedef NS_ENUM(NSInteger, TCMBorderSideType) {
-    TCMBorderSideTypeAll    = 0,
-    TCMBorderSideTypeTop    = 1 << 0,
-    TCMBorderSideTypeBottom = 1 << 1,
-    TCMBorderSideTypeLeft   = 1 << 2,
-    TCMBorderSideTypeRight  = 1 << 3,
+typedef NS_OPTIONS(NSUInteger, TCMBorderSideType) {
+    TCMBorderSideTypeAll    = 1 << 0,
+    TCMBorderSideTypeTop    = 1 << 1,
+    TCMBorderSideTypeBottom = 1 << 2,
+    TCMBorderSideTypeLeft   = 1 << 3,
+    TCMBorderSideTypeRight  = 1 << 4,
 };
 
 @interface UIView (TCMBorderSide)

@@ -94,45 +94,25 @@ static const void *kAnimationFinished = @"kAnimationFinishedKey";
     CGPoint fromPoint = transitionLayer.position;
     
     // 修剪
-    CABasicAnimation *cornerRadiusAnimation = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
-    [cornerRadiusAnimation setToValue:@(frame.size.width/2.0)];
-    cornerRadiusAnimation.fillMode = kCAFillModeForwards;
-    cornerRadiusAnimation.removedOnCompletion = NO;
+//    CABasicAnimation *cornerRadiusAnimation = [self cornerRadiusAnimationBySize:frame.size];
     
     // 设置路径运动
-    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-//    pathAnimation.calculationMode = kCAAnimationPaced;
-//    pathAnimation.fillMode = kCAFillModeForwards;
-//    pathAnimation.removedOnCompletion = NO;
-    
-    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
-    [bezierPath moveToPoint:fromPoint];
-    if (endPoint.y > fromPoint.y) {
-        [bezierPath addCurveToPoint:endPoint controlPoint1:CGPointMake(fromPoint.x, fromPoint.y - 30) controlPoint2:CGPointMake(endPoint.x, endPoint.y - 30)];
-    }else{
-        [bezierPath addCurveToPoint:endPoint controlPoint1:CGPointMake(fromPoint.x, fromPoint.y + 30) controlPoint2:CGPointMake(endPoint.x, endPoint.y + 30)];
-    }
-    
-    pathAnimation.path = [bezierPath CGPath];
+    CAKeyframeAnimation *pathAnimation = [self parabolaAnimation:fromPoint toPoint:endPoint];
     
     //初始化透明度动画组件
-    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    opacityAnimation.fromValue = @1;
-    opacityAnimation.toValue = @0.8;
-    opacityAnimation.fillMode = kCAFillModeForwards;
-    opacityAnimation.removedOnCompletion = true;
+    CABasicAnimation *opacityAnimation = [self opacityAnimation];
     
     //初始化变换动画
-    CABasicAnimation *transformAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    transformAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-    transformAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DScale(CATransform3DIdentity, 0.2, 0.2, 1.0)];
+    CABasicAnimation *transformAnimation = [self transformAnimation];
     
+    //往下抛时旋转小动画
+//    CABasicAnimation *rotateAnimation = [self rotationAnimation];
     //加载动画组
     CAAnimationGroup *groupAnimation = [CAAnimationGroup animation];
 //    groupAnimation.fillMode = kCAFillModeForwards;
 //    groupAnimation.removedOnCompletion = NO;
     [groupAnimation setAnimations:@[pathAnimation, opacityAnimation,transformAnimation]];
-    groupAnimation.duration = 0.8;
+    groupAnimation.duration = 0.5;
     groupAnimation.delegate = self;
     
     
@@ -151,6 +131,76 @@ static const void *kAnimationFinished = @"kAnimationFinishedKey";
     [self.transitionLayer removeFromSuperlayer];
 }
 
+//抛物线动画
+-(CAKeyframeAnimation*)parabolaAnimation:(CGPoint)fromPoint toPoint:(CGPoint)endPoint{
+    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    //    pathAnimation.calculationMode = kCAAnimationPaced;
+    //    pathAnimation.fillMode = kCAFillModeForwards;
+    //    pathAnimation.removedOnCompletion = NO;
+    
+    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
+    [bezierPath moveToPoint:fromPoint];
+    if (endPoint.y > fromPoint.y) {
+        
+        [bezierPath addCurveToPoint:endPoint controlPoint1:CGPointMake(fromPoint.x, fromPoint.y - 30) controlPoint2:CGPointMake(endPoint.x, fromPoint.y - 30)];
+    }else{
+        [bezierPath addQuadCurveToPoint:endPoint controlPoint:CGPointMake(fromPoint.x, endPoint.y)];
+        
+    }
+    
+    pathAnimation.path = [bezierPath CGPath];
+    
+    return pathAnimation;
+}
+
+//变换动画
+-(CABasicAnimation*)transformAnimation{
+    CABasicAnimation *transformAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    transformAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    transformAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DScale(CATransform3DIdentity, 0.2, 0.2, 1.0)];
+    transformAnimation.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    return transformAnimation;
+}
+
+//透明度动画
+-(CABasicAnimation*)opacityAnimation{
+    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacityAnimation.fromValue = @1;
+    opacityAnimation.toValue = @0.8;
+    opacityAnimation.fillMode = kCAFillModeForwards;
+    opacityAnimation.removedOnCompletion = true;
+    return opacityAnimation;
+}
+
+//旋转动画
+-(CABasicAnimation*)rotationAnimation{
+    CABasicAnimation *rotateAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    rotateAnimation.removedOnCompletion = YES;
+    rotateAnimation.fromValue = [NSNumber numberWithFloat:0];
+    rotateAnimation.toValue = [NSNumber numberWithFloat:12];
+    
+    return rotateAnimation;
+}
+
+//修剪成圆的动画
+-(CABasicAnimation*)cornerRadiusAnimationBySize:(CGSize)size{
+    CABasicAnimation *cornerRadiusAnimation = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
+    if (size.height>size.width) {
+        [cornerRadiusAnimation setToValue:@(size.width/2.0)];
+    }else{
+       [cornerRadiusAnimation setToValue:@(size.height/2.0)];
+    }
+    
+    cornerRadiusAnimation.fillMode = kCAFillModeForwards;
+    cornerRadiusAnimation.removedOnCompletion = NO;
+    
+    return cornerRadiusAnimation;
+}
+
+#pragma mark -- Public
+/*
+ 缩放动画
+ */
 -(void)scaleBounceAnimation{
     
     CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];

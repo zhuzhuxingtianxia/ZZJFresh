@@ -70,6 +70,7 @@
 		B6B40C9F2063ADA600FBAE30 /* BottomBasketView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40C9E2063ADA600FBAE30 /* BottomBasketView.m */; };
 		B6B40CA22064D60100FBAE30 /* PresentBasketList.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40CA12064D60000FBAE30 /* PresentBasketList.m */; };
 		B6B40CA52064DC4E00FBAE30 /* BadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40CA42064DC4E00FBAE30 /* BadgeButton.m */; };
+		B6B4BF3A207CA9CD00E7D2F1 /* ZJButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BF39207CA9CD00E7D2F1 /* ZJButton.m */; };
 		B8B076A3314BD528FA046AD4 /* Pods_ZZJFresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762EA87747C831FEB19EE625 /* Pods_ZZJFresh.framework */; };
 /* End PBXBuildFile section */
 
@@ -199,6 +200,8 @@
 		B6B40CA12064D60000FBAE30 /* PresentBasketList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentBasketList.m; sourceTree = "<group>"; };
 		B6B40CA32064DC4E00FBAE30 /* BadgeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BadgeButton.h; sourceTree = "<group>"; };
 		B6B40CA42064DC4E00FBAE30 /* BadgeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadgeButton.m; sourceTree = "<group>"; };
+		B6B4BF38207CA9CD00E7D2F1 /* ZJButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJButton.h; sourceTree = "<group>"; };
+		B6B4BF39207CA9CD00E7D2F1 /* ZJButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJButton.m; sourceTree = "<group>"; };
 		CF0595CA9F5183F9E426279D /* Pods-ZZJFresh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZJFresh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZZJFresh/Pods-ZZJFresh.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -342,6 +345,8 @@
 				B63AB47B1FF5EC3E0007D9A4 /* activity_status_goods_2.json */,
 				B63AB48C1FFB85BF0007D9A4 /* activity_status_goods_1.json */,
 				B63AB4611FF4BBDE0007D9A4 /* Category */,
+				B6B4BF38207CA9CD00E7D2F1 /* ZJButton.h */,
+				B6B4BF39207CA9CD00E7D2F1 /* ZJButton.m */,
 			);
 			path = ToolManger;
 			sourceTree = "<group>";
@@ -812,6 +817,7 @@
 				B63AB46C1FF514990007D9A4 /* UIView+TCMEdgeSlide.m in Sources */,
 				B63AB4771FF5E2D50007D9A4 /* TCMSectionScrollView.m in Sources */,
 				B63AB49B1FFCC3040007D9A4 /* UIImage+Additions.m in Sources */,
+				B6B4BF3A207CA9CD00E7D2F1 /* ZJButton.m in Sources */,
 				B6B40C9F2063ADA600FBAE30 /* BottomBasketView.m in Sources */,
 				B6B40CA52064DC4E00FBAE30 /* BadgeButton.m in Sources */,
 				B63AB4901FFB95270007D9A4 /* UIView+TCMBorderSide.m in Sources */,

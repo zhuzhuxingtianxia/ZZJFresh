@@ -18,30 +18,32 @@
         self.layer.borderColor = color.CGColor;
         
     }else{
-        
-        /// 左侧
-        if (borderSideType & TCMBorderSideTypeLeft) {
-            /// 左侧线路径
-            [self.layer addSublayer:[self addLineOriginPoint:CGPointMake(0.f, 0.f) toPoint:CGPointMake(0.0f, self.frame.size.height) borderColor:color borderWidth:borderWidth]];
-        }
-        
-        /// 右侧
-        if (borderSideType & TCMBorderSideTypeRight) {
-            /// 右侧线路径
-            [self.layer addSublayer:[self addLineOriginPoint:CGPointMake(self.frame.size.width, 0.0f) toPoint:CGPointMake( self.frame.size.width, self.frame.size.height) borderColor:color borderWidth:borderWidth]];
-        }
-        
-        /// top
-        if (borderSideType & TCMBorderSideTypeTop) {
-            /// top线路径
-            [self.layer addSublayer:[self addLineOriginPoint:CGPointMake(0.0f, 0.0f) toPoint:CGPointMake(self.frame.size.width, 0.0f) borderColor:color borderWidth:borderWidth]];
-        }
-        
-        /// bottom
-        if (borderSideType & TCMBorderSideTypeBottom) {
-            /// bottom线路径
-            [self.layer addSublayer:[self addLineOriginPoint:CGPointMake(0.0f, self.frame.size.height) toPoint:CGPointMake( self.frame.size.width, self.frame.size.height) borderColor:color borderWidth:borderWidth]];
-        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            /// 左侧
+            if (borderSideType & TCMBorderSideTypeLeft) {
+                /// 左侧线路径
+                [self.layer addSublayer:[self addLineOriginPoint:CGPointMake(0.f, 0.f) toPoint:CGPointMake(0.0f, self.frame.size.height) borderColor:color borderWidth:borderWidth]];
+            }
+            
+            /// 右侧
+            if (borderSideType & TCMBorderSideTypeRight) {
+                /// 右侧线路径
+                [self.layer addSublayer:[self addLineOriginPoint:CGPointMake(self.frame.size.width, 0.0f) toPoint:CGPointMake( self.frame.size.width, self.frame.size.height) borderColor:color borderWidth:borderWidth]];
+            }
+            
+            /// top
+            if (borderSideType & TCMBorderSideTypeTop) {
+                /// top线路径
+                [self.layer addSublayer:[self addLineOriginPoint:CGPointMake(0.0f, 0.0f) toPoint:CGPointMake(self.frame.size.width, 0.0f) borderColor:color borderWidth:borderWidth]];
+            }
+            
+            /// bottom
+            if (borderSideType & TCMBorderSideTypeBottom) {
+                /// bottom线路径
+                [self.layer addSublayer:[self addLineOriginPoint:CGPointMake(0.0f, self.frame.size.height) toPoint:CGPointMake( self.frame.size.width, self.frame.size.height) borderColor:color borderWidth:borderWidth]];
+            }
+            
+        });
         
     }
     
