@@ -120,11 +120,13 @@ static BOOL change;
     }];
 }
 
--(void)clickAction{
+-(void)clickAction:(UIButton*)sender{
     //[self.anView addToBasket:self.view moveToPoint:CGPointMake(20, 20)];
-    
+    sender.enabled = NO;
     [self.anImageView addProductsToShopCarAnimation:self.moveTopButton completion:^(BOOL flag) {
-        
+        if (flag) {
+            sender.enabled = YES;
+        }
     }];
 }
 
@@ -135,7 +137,7 @@ static BOOL change;
         UIImage *img = [UIImage imageNamed:@"home_dig"];
         [_moveTopButton setImage:img forState:UIControlStateNormal];
         _moveTopButton.adjustsImageWhenHighlighted = NO;
-        [_moveTopButton addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
+        [_moveTopButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_moveTopButton];
         
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[moveTopButton(width)]-20-|" options:0 metrics:@{@"width":@(img.size.width)} views:@{@"moveTopButton":_moveTopButton}]];
