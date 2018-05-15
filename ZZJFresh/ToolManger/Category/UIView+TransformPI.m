@@ -88,9 +88,14 @@
  @param rotate 是否旋转
  */
 - (void)transform3DRotate:(BOOL)rotate{
-    [UIView animateWithDuration:.25 animations:^{
-        self.layer.transform = CATransform3DRotate(self.layer.transform, rotate ? M_PI : -M_PI, 1.0f, 0.0f, 0.0f);
-    }];
+    if (CATransform3DIsAffine(self.layer.transform)) {
+        [UIView animateWithDuration:.25 animations:^{
+            self.layer.transform = CATransform3DRotate(self.layer.transform, rotate ? M_PI : -M_PI, 1.0f, 0.0f, 0.0f);
+        }];
+    }else{
+        self.layer.transform = CATransform3DIdentity;
+    }
+    
     
     /*
     [UIView transitionFromView:self toView:self.superview duration:.25 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished) {
