@@ -43,7 +43,12 @@
         return stringValue;
     };
 }
-
+/**
+ 操作后设置取舍模式
+ 
+ roundingMode 取舍模式，scale 保留几位小数
+ @return 取舍的结果
+ */
 - (NSString *(^)(NSRoundingMode roundingMode,short scale))endRoundingMode {
     return ^id(NSRoundingMode roundingMode,short scale){
         NSDecimalNumberHandler*roundUp = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:roundingMode scale:scale raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:YES];

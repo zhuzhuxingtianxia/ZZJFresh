@@ -9,6 +9,8 @@
 #import "BottomBasketView.h"
 #import "BadgeButton.h"
 #import "PresentBasketList.h"
+#import "NSString+DecimalNumber.h"
+
 @interface BottomBasketView ()<PresentBasketListDelegate>
 {
     NSLayoutConstraint *_catConstraint;
@@ -65,6 +67,7 @@
 -(void)setBasketAddType:(BasketAddType)basketAddType{
     _basketAddType = basketAddType;
     [self buildLayout];
+    [self changeWidgetStatus];
 }
 
 -(void)addObject:(id)anObject{
@@ -84,6 +87,7 @@
     [self buildLeftLayout];
     
     [self buildRightLayout];
+    
 }
 
 -(void)buildLeftLayout{
@@ -228,7 +232,7 @@
     
     //单品
     if (_basketAddType == BasketAddTypeSingle){
-        
+        self.handleView.hidden = NO;
         if (self.dataSource.count > 0) {
             
             if (_catConstraint.constant != 0) {
@@ -251,6 +255,8 @@
             }];
         }
         
+    }else if (_basketAddType == BasketAddTypeMultiple){
+        self.handleView.hidden = YES;
     }
 }
 //同一个商品的合并
@@ -301,16 +307,17 @@
 
 -(CGFloat)shopTotalPrice{
     CGFloat shopTotalPrice = 0;
-    NSDecimalNumber *totalPriceNumber = [NSDecimalNumber decimalNumberWithString:@"0"];
+    NSString *totalPriceNumber = @"0";
     for (id subObj in self.dataSource) {
-        NSDecimalNumber *priceNumber = [NSDecimalNumber decimalNumberWithString:[subObj valueForKey:self.currentPrice]];
-        NSDecimalNumber *countNumber = [NSDecimalNumber decimalNumberWithString:[subObj valueForKey:self.count]];
+        NSString *price = [subObj valueForKey:self.currentPrice];
+        NSString *cout = [subObj valueForKey:self.count];
         
-        NSDecimalNumber *singleShopTotalPrice = [priceNumber decimalNumberByMultiplyingBy:countNumber];
-       totalPriceNumber = [totalPriceNumber decimalNumberByAdding:singleShopTotalPrice];
+        NSString *singleShopTotalPrice = price.multiplyingBy(cout);
+        
+        totalPriceNumber = totalPriceNumber.addingBy(singleShopTotalPrice);
         
     }
-    shopTotalPrice = totalPriceNumber.doubleValue;
+    shopTotalPrice = totalPriceNumber.endRoundingMode(NSRoundUp,2).doubleValue;
     return shopTotalPrice;
 }
 
