@@ -65,6 +65,8 @@
 		B63AB4951FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4941FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m */; };
 		B63AB49B1FFCC3040007D9A4 /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB49A1FFCC3040007D9A4 /* UIImage+Additions.m */; };
 		B63AB4A21FFDBCBA0007D9A4 /* UITextField+CursorRange.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4A11FFDBCBA0007D9A4 /* UITextField+CursorRange.m */; };
+		B63B794320AE5EA20014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B63B793F20AE5EA10014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.m */; };
+		B63B794420AE5EA20014FC90 /* NSString+SCRAttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B63B794120AE5EA20014FC90 /* NSString+SCRAttributedStringBuilder.m */; };
 		B667AE94200CA3810013222E /* ZJFreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = B667AE93200CA3810013222E /* ZJFreshController.m */; };
 		B667AE97200CAE620013222E /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B667AE96200CAE620013222E /* TableHeaderView.m */; };
 		B6A7470C20AA6AE100AB39D1 /* NSString+DecimalNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A7470B20AA6AE100AB39D1 /* NSString+DecimalNumber.m */; };
@@ -191,6 +193,10 @@
 		B63AB49A1FFCC3040007D9A4 /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
 		B63AB4A01FFDBCBA0007D9A4 /* UITextField+CursorRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+CursorRange.h"; sourceTree = "<group>"; };
 		B63AB4A11FFDBCBA0007D9A4 /* UITextField+CursorRange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+CursorRange.m"; sourceTree = "<group>"; };
+		B63B793F20AE5EA10014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+SCRAttributedStringBuilder.m"; sourceTree = "<group>"; };
+		B63B794020AE5EA20014FC90 /* NSString+SCRAttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SCRAttributedStringBuilder.h"; sourceTree = "<group>"; };
+		B63B794120AE5EA20014FC90 /* NSString+SCRAttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SCRAttributedStringBuilder.m"; sourceTree = "<group>"; };
+		B63B794220AE5EA20014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+SCRAttributedStringBuilder.h"; sourceTree = "<group>"; };
 		B667AE92200CA3810013222E /* ZJFreshController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJFreshController.h; sourceTree = "<group>"; };
 		B667AE93200CA3810013222E /* ZJFreshController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJFreshController.m; sourceTree = "<group>"; };
 		B667AE95200CAE620013222E /* TableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
@@ -429,6 +435,10 @@
 		B63AB4611FF4BBDE0007D9A4 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				B63B794220AE5EA20014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.h */,
+				B63B793F20AE5EA10014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.m */,
+				B63B794020AE5EA20014FC90 /* NSString+SCRAttributedStringBuilder.h */,
+				B63B794120AE5EA20014FC90 /* NSString+SCRAttributedStringBuilder.m */,
 				B63AB46A1FF514990007D9A4 /* UIView+TCMEdgeSlide.h */,
 				B63AB46B1FF514990007D9A4 /* UIView+TCMEdgeSlide.m */,
 				B63AB46D1FF514DA0007D9A4 /* UIView+TCMBasketAnimation.h */,
@@ -805,6 +815,8 @@
 				B604042A20171EE6003E8D69 /* WelcomeViewController.m in Sources */,
 				B63AB4821FF61BDB0007D9A4 /* NSObject+TCMObjectCopy.m in Sources */,
 				B604042320171D7B003E8D69 /* TabBarController.m in Sources */,
+				B63B794320AE5EA20014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.m in Sources */,
+				B63B794420AE5EA20014FC90 /* NSString+SCRAttributedStringBuilder.m in Sources */,
 				B6B40CA22064D60100FBAE30 /* PresentBasketList.m in Sources */,
 				B63AB4951FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m in Sources */,
 				B63AB4851FF644BB0007D9A4 /* TCMFreshNode.m in Sources */,
