@@ -16,6 +16,9 @@
 
 - (NSString *(^)(NSString *string))addingBy {
     return ^id(NSString *string){
+        if (!string) {
+            string = @"0";
+        }
       NSString *stringValue = [self.decimalNumber decimalNumberByAdding:string.decimalNumber].stringValue;
         return stringValue;
     };
@@ -23,6 +26,9 @@
 
 - (NSString *(^)(NSString *string))subtractingBy {
     return ^id(NSString *string){
+        if (!string) {
+            string = @"0";
+        }
         NSString *stringValue = [self.decimalNumber decimalNumberByMultiplyingBy:string.decimalNumber].stringValue;
         return stringValue;
     };
@@ -30,6 +36,9 @@
 
 - (NSString *(^)(NSString *string))multiplyingBy {
     return ^id(NSString *string){
+        if (!string) {
+            string = @"1";
+        }
         NSString *stringValue = [self.decimalNumber decimalNumberByMultiplyingBy:string.decimalNumber].stringValue;
         return stringValue;
     };
@@ -37,6 +46,9 @@
 
 - (NSString *(^)(NSString *string))dividingBy {
     return ^id(NSString *string){
+        if (!string) {
+            string = @"1";
+        }
         NSInteger tag = string.decimalNumber.doubleValue;
         NSAssert(tag != 0, @"除数不能为零");
         NSString *stringValue = [self.decimalNumber decimalNumberByDividingBy:string.decimalNumber].stringValue;
