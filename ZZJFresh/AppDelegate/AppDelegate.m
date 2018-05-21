@@ -7,9 +7,18 @@
 //
 
 #import "AppDelegate.h"
+@interface PP: NSObject
+@end
 
+@implementation PP
+
+@end
 @interface AppDelegate ()
+@property (nonatomic, strong) NSString *strongString;
+@property (nonatomic, weak)   NSString *weakString;
 
+@property (nonatomic, strong) PP *strongPP;
+@property (nonatomic, weak)   PP *weakPP;
 @end
 
 @implementation AppDelegate
@@ -17,7 +26,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    _strongString = @"string1";
+    _weakString =  _strongString;
     
+    _strongString = nil;
+    
+    NSLog(@"%@", _weakString);//string1
+    
+    _strongPP = [[PP alloc] init];
+    _weakPP = _strongPP;
+    _strongPP = nil;
+    NSLog(@"==%@",_weakPP);//nil
     return YES;
 }
 
