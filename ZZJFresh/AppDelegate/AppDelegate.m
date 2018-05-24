@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NSString+DecimalNumber.h"
 @interface PP: NSObject
 @end
 
@@ -37,6 +38,11 @@
     _weakPP = _strongPP;
     _strongPP = nil;
     NSLog(@"==%@",_weakPP);//nil
+    
+//    2.25*3.35+4.2*5.7
+    NSString *string = @"2.25".multiplyingBy(@"3.35").addingBy(@"4.2".multiplyingBy(@"5.7")).endRoundingMode(NSRoundDown,2);
+    NSLog(@"%@",string);
+    
     return YES;
 }
 
