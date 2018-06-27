@@ -2,8 +2,8 @@
 //  UIImage+Additions.h
 //  ASK
 //
-//  Created by Pinka on 14-6-18.
-//  Copyright (c) 2014年 yiyaowang. All rights reserved.
+//  Created by ZZJ on 14-6-18.
+//  Copyright (c) 2014年 ZZJ. All rights reserved.
 //
 
 #import <Accelerate/Accelerate.h>
@@ -47,7 +47,10 @@ typedef NS_ENUM(NSInteger, InputImageType) {
  *  @param newSize 自定义小
  *  @return 新图
  */
+
 + (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize;
+//图片修改大小
+- (UIImage*)imageWithScaledToSize:(CGSize)newSize;
 
 /*
    图片裁剪

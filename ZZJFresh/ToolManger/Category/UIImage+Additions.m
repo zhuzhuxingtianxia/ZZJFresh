@@ -2,8 +2,8 @@
 //  UIImage+Additions.m
 //  ASK
 //
-//  Created by Pinka on 14-6-18.
-//  Copyright (c) 2014年 yiyaowang. All rights reserved.
+//  Created by ZZJ on 14-6-18.
+//  Copyright (c) 2014年 ZZJ. All rights reserved.
 //
 
 #import "UIImage+Additions.h"
@@ -76,13 +76,23 @@
     return [UIImage imageWithContentsOfFile:strPath];
 }
 
-+ (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize
-{
-    UIGraphicsBeginImageContextWithOptions(newSize, YES, 1.0);
-    CGRect imageRect = CGRectMake(0, 0,newSize.width, newSize.height);
-    [image drawInRect:imageRect];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//图片修改大小
+- (UIImage*)imageWithScaledToSize:(CGSize)newSize{
+    //opaque yes不透明的 no透明
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, [UIScreen mainScreen].scale);
+    
+    [self drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
     UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
++ (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize {
+    
+    UIImage *newImage = [image imageWithScaledToSize:newSize];
     
     return newImage;
 }

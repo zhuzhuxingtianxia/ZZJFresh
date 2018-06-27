@@ -75,6 +75,7 @@
 		B6B40CA22064D60100FBAE30 /* PresentBasketList.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40CA12064D60000FBAE30 /* PresentBasketList.m */; };
 		B6B40CA52064DC4E00FBAE30 /* BadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40CA42064DC4E00FBAE30 /* BadgeButton.m */; };
 		B6B4BF3A207CA9CD00E7D2F1 /* ZJButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BF39207CA9CD00E7D2F1 /* ZJButton.m */; };
+		B6FF3DED20DBC8FD0048D1FD /* UIView+ZJCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FF3DEC20DBC8FD0048D1FD /* UIView+ZJCopy.m */; };
 		B8B076A3314BD528FA046AD4 /* Pods_ZZJFresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762EA87747C831FEB19EE625 /* Pods_ZZJFresh.framework */; };
 /* End PBXBuildFile section */
 
@@ -214,6 +215,8 @@
 		B6B40CA42064DC4E00FBAE30 /* BadgeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadgeButton.m; sourceTree = "<group>"; };
 		B6B4BF38207CA9CD00E7D2F1 /* ZJButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJButton.h; sourceTree = "<group>"; };
 		B6B4BF39207CA9CD00E7D2F1 /* ZJButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJButton.m; sourceTree = "<group>"; };
+		B6FF3DEB20DBC8FD0048D1FD /* UIView+ZJCopy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ZJCopy.h"; sourceTree = "<group>"; };
+		B6FF3DEC20DBC8FD0048D1FD /* UIView+ZJCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZJCopy.m"; sourceTree = "<group>"; };
 		CF0595CA9F5183F9E426279D /* Pods-ZZJFresh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZJFresh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZZJFresh/Pods-ZZJFresh.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -466,6 +469,8 @@
 				B6A7470B20AA6AE100AB39D1 /* NSString+DecimalNumber.m */,
 				B63B796C20B294550014FC90 /* UINavigationController+PushMode.h */,
 				B63B796D20B294550014FC90 /* UINavigationController+PushMode.m */,
+				B6FF3DEB20DBC8FD0048D1FD /* UIView+ZJCopy.h */,
+				B6FF3DEC20DBC8FD0048D1FD /* UIView+ZJCopy.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -833,6 +838,7 @@
 				B61A4B74207A34EB00B78139 /* UIColor+HexConvert.m in Sources */,
 				B604042D20171F16003E8D69 /* AdViewController.m in Sources */,
 				B63AB4881FF64D900007D9A4 /* TCMFreshSectionCell.m in Sources */,
+				B6FF3DED20DBC8FD0048D1FD /* UIView+ZJCopy.m in Sources */,
 				B667AE94200CA3810013222E /* ZJFreshController.m in Sources */,
 				B63AB47A1FF5E9B10007D9A4 /* TCMNetWork.m in Sources */,
 				B63AB4511FF4915D0007D9A4 /* TCMFreshController.m in Sources */,
