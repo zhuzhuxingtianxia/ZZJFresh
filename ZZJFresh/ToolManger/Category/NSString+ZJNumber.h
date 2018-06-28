@@ -4,7 +4,7 @@
 //
 //  Created by ZZJ on 2018/6/28.
 //  Copyright © 2018年 Jion. All rights reserved.
-//
+// ⚠️：可使用NSDecimalNumber处理末尾为0的数字
 
 #import <Foundation/Foundation.h>
 
