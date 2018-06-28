@@ -36,6 +36,8 @@
 		B6040456201743DB003E8D69 /* home_market@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6040442201743DB003E8D69 /* home_market@2x.png */; };
 		B6040457201743DB003E8D69 /* home_category@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6040443201743DB003E8D69 /* home_category@3x.png */; };
 		B6040458201743DB003E8D69 /* home_basket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6040444201743DB003E8D69 /* home_basket@2x.png */; };
+		B60AD34920E4888700393066 /* NSDecimalNumber+TCM.m in Sources */ = {isa = PBXBuildFile; fileRef = B60AD34820E4888700393066 /* NSDecimalNumber+TCM.m */; };
+		B60AD34C20E4A0C600393066 /* NSString+ZJNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = B60AD34B20E4A0C600393066 /* NSString+ZJNumber.m */; };
 		B61A4B44206CB1DF00B78139 /* UIView+TransformPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A4B42206CB1DF00B78139 /* UIView+TransformPI.m */; };
 		B61A4B74207A34EB00B78139 /* UIColor+HexConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A4B73207A34EB00B78139 /* UIColor+HexConvert.m */; };
 		B61A4B77207A387B00B78139 /* UIFont+AutoMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A4B76207A387B00B78139 /* UIFont+AutoMatch.m */; };
@@ -136,6 +138,10 @@
 		B6040442201743DB003E8D69 /* home_market@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_market@2x.png"; sourceTree = "<group>"; };
 		B6040443201743DB003E8D69 /* home_category@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_category@3x.png"; sourceTree = "<group>"; };
 		B6040444201743DB003E8D69 /* home_basket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_basket@2x.png"; sourceTree = "<group>"; };
+		B60AD34720E4888700393066 /* NSDecimalNumber+TCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDecimalNumber+TCM.h"; sourceTree = "<group>"; };
+		B60AD34820E4888700393066 /* NSDecimalNumber+TCM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+TCM.m"; sourceTree = "<group>"; };
+		B60AD34A20E4A0C600393066 /* NSString+ZJNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZJNumber.h"; sourceTree = "<group>"; };
+		B60AD34B20E4A0C600393066 /* NSString+ZJNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZJNumber.m"; sourceTree = "<group>"; };
 		B61A4B42206CB1DF00B78139 /* UIView+TransformPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TransformPI.m"; sourceTree = "<group>"; };
 		B61A4B43206CB1DF00B78139 /* UIView+TransformPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TransformPI.h"; sourceTree = "<group>"; };
 		B61A4B72207A34EB00B78139 /* UIColor+HexConvert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexConvert.h"; sourceTree = "<group>"; };
@@ -469,8 +475,12 @@
 				B6A7470B20AA6AE100AB39D1 /* NSString+DecimalNumber.m */,
 				B63B796C20B294550014FC90 /* UINavigationController+PushMode.h */,
 				B63B796D20B294550014FC90 /* UINavigationController+PushMode.m */,
+				B60AD34720E4888700393066 /* NSDecimalNumber+TCM.h */,
+				B60AD34820E4888700393066 /* NSDecimalNumber+TCM.m */,
 				B6FF3DEB20DBC8FD0048D1FD /* UIView+ZJCopy.h */,
 				B6FF3DEC20DBC8FD0048D1FD /* UIView+ZJCopy.m */,
+				B60AD34A20E4A0C600393066 /* NSString+ZJNumber.h */,
+				B60AD34B20E4A0C600393066 /* NSString+ZJNumber.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -823,6 +833,7 @@
 				B604042720171EAC003E8D69 /* LaunchViewController.m in Sources */,
 				B63AB4251FF48C420007D9A4 /* main.m in Sources */,
 				B604042A20171EE6003E8D69 /* WelcomeViewController.m in Sources */,
+				B60AD34920E4888700393066 /* NSDecimalNumber+TCM.m in Sources */,
 				B63AB4821FF61BDB0007D9A4 /* NSObject+TCMObjectCopy.m in Sources */,
 				B604042320171D7B003E8D69 /* TabBarController.m in Sources */,
 				B63B794320AE5EA20014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.m in Sources */,
@@ -834,6 +845,7 @@
 				B667AE97200CAE620013222E /* TableHeaderView.m in Sources */,
 				B63AB4541FF493820007D9A4 /* TCMFreshCell.m in Sources */,
 				B6A7470C20AA6AE100AB39D1 /* NSString+DecimalNumber.m in Sources */,
+				B60AD34C20E4A0C600393066 /* NSString+ZJNumber.m in Sources */,
 				B61A4B44206CB1DF00B78139 /* UIView+TransformPI.m in Sources */,
 				B61A4B74207A34EB00B78139 /* UIColor+HexConvert.m in Sources */,
 				B604042D20171F16003E8D69 /* AdViewController.m in Sources */,
