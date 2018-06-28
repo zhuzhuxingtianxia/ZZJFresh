@@ -11,18 +11,8 @@
 @implementation NSString (ZJNumber)
 -(NSString*)deleteLastZero {
     if ([self rangeOfString:@"."].location != NSNotFound) {
-        NSArray *stringArray = [self componentsSeparatedByString:@"."];
-        if (stringArray.count == 2) {
-            NSString *lastString =  stringArray.lastObject;
-            if ([lastString integerValue] > 0) {
-                lastString = delLastZero(lastString);
-                NSString *resultString = [stringArray.firstObject stringByAppendingFormat:@".%@",lastString];
-                return resultString;
-                
-            }else{
-                return stringArray.firstObject;
-            }
-        }
+       NSString *lastString = delLastZero(self);
+       return lastString;
     }
     
     return self;
