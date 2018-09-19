@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NSString+DecimalNumber.h"
+#import <ethers/ethers.h>
 
 @interface PP: NSObject
 @end
@@ -60,6 +61,9 @@
     
     NSString *value = [[NSString alloc] initWithFormat:@"%064llx",(unsigned long long)source.doubleValue];
     NSLog(@"%@",value);
+    
+    BigNumber *bigNumber = [BigNumber bigNumberWithDecimalString:source];
+    NSLog(@"%@",bigNumber.hexString);
     
     NSString *binary = [self binaryStringWithInteger:source];
     //11010000001010101011010010000110110011101101110000000000000000000
