@@ -8,7 +8,11 @@
 
 #ifndef TCM_Configuration_h
 #define TCM_Configuration_h
-
+/*
+ iPhone X/XS : 375pt * 812pt (@3x)
+ iPhone XS Max : 414pt * 896pt (@3x)
+ iPhone XR  : 414pt * 896pt (@2x)
+ */
 
 /**
  *  机型定义

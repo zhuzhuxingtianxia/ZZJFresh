@@ -5,8 +5,21 @@
 //  Created by ZZJ on 2018/5/15.
 //  Copyright © 2018年 Jion. All rights reserved.
 //
+/*
+ //mantissa：长整形；exponent：指数；flag：正负数
+ NSDecimalNumber * amount0 = [[NSDecimalNumber alloc] initWithMantissa:42 exponent:-2 isNegative:NO];//0.42
+ NSDecimalNumber * amount1 = [[NSDecimalNumber alloc] initWithMantissa:42 exponent:-2 isNegative:NO];//-4200
+ 
+ 
+ //locale代表一种格式,对于这种格式可以参考一下例子去理解
+ NSDictionary *locale0 = [NSDictionary dictionaryWithObject:@"," forKey:NSLocaleDecimalSeparator];    //以","当做小数点格式
+ NSDecimalNumber * amount2 = [[NSDecimalNumber alloc] initWithString:@"42,68" locale:locale0];//42.68
+ NSLocale *locale5 = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];//法国数据格式,法国的小数点是','逗号
+ NSDecimalNumber * amount3 = [[NSDecimalNumber alloc] initWithString:@"42.68" locale:locale5];//42.68
+ */
 
 #import "NSString+DecimalNumber.h"
+#import <math.h>
 
 @implementation NSString (DecimalNumber)
 
@@ -52,6 +65,36 @@
         NSInteger tag = string.decimalNumber.doubleValue;
         NSAssert(tag != 0, @"除数不能为零");
         NSString *stringValue = [self.decimalNumber decimalNumberByDividingBy:string.decimalNumber].stringValue;
+        return stringValue;
+    };
+}
+
+/*
+ 指数
+ */
+- (NSString *(^)(CGFloat power))raisingToPower {
+    
+    return ^id(CGFloat power){
+        NSString *stringValue;
+        long double dnumber = powl(self.decimalNumber.doubleValue,power);
+        stringValue = [NSNumber numberWithDouble:dnumber].stringValue;
+        /*
+        if (power < 0) {
+           NSAssert(power < 0, @"次方数不能为负数");
+        }else{
+            stringValue = [self.decimalNumber decimalNumberByRaisingToPower:power].stringValue;
+        }*/
+       
+        return stringValue;
+    };
+}
+/*
+ 乘以10的power次方
+ */
+- (NSString *(^)(short power))multiplyingByPowerOf10 {
+    
+    return ^id(short power){
+        NSString *stringValue = [self.decimalNumber decimalNumberByMultiplyingByPowerOf10:power].stringValue;
         return stringValue;
     };
 }

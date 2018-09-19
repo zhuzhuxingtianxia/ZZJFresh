@@ -70,6 +70,7 @@
 		B63B794320AE5EA20014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B63B793F20AE5EA10014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.m */; };
 		B63B794420AE5EA20014FC90 /* NSString+SCRAttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B63B794120AE5EA20014FC90 /* NSString+SCRAttributedStringBuilder.m */; };
 		B63B796E20B294550014FC90 /* UINavigationController+PushMode.m in Sources */ = {isa = PBXBuildFile; fileRef = B63B796D20B294550014FC90 /* UINavigationController+PushMode.m */; };
+		B664FA82212CF75000249BC1 /* SDWebImageImageIOCoder+SDImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B664FA80212CF74F00249BC1 /* SDWebImageImageIOCoder+SDImageCoder.m */; };
 		B667AE94200CA3810013222E /* ZJFreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = B667AE93200CA3810013222E /* ZJFreshController.m */; };
 		B667AE97200CAE620013222E /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B667AE96200CAE620013222E /* TableHeaderView.m */; };
 		B6A7470C20AA6AE100AB39D1 /* NSString+DecimalNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A7470B20AA6AE100AB39D1 /* NSString+DecimalNumber.m */; };
@@ -77,6 +78,7 @@
 		B6B40CA22064D60100FBAE30 /* PresentBasketList.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40CA12064D60000FBAE30 /* PresentBasketList.m */; };
 		B6B40CA52064DC4E00FBAE30 /* BadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40CA42064DC4E00FBAE30 /* BadgeButton.m */; };
 		B6B4BF3A207CA9CD00E7D2F1 /* ZJButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BF39207CA9CD00E7D2F1 /* ZJButton.m */; };
+		B6CEAB4C214FC9B200603E71 /* UILabel+ZJTextAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CEAB4B214FC9B200603E71 /* UILabel+ZJTextAction.m */; };
 		B6FF3DED20DBC8FD0048D1FD /* UIView+ZJCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FF3DEC20DBC8FD0048D1FD /* UIView+ZJCopy.m */; };
 		B8B076A3314BD528FA046AD4 /* Pods_ZZJFresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762EA87747C831FEB19EE625 /* Pods_ZZJFresh.framework */; };
 /* End PBXBuildFile section */
@@ -207,6 +209,8 @@
 		B63B794220AE5EA20014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+SCRAttributedStringBuilder.h"; sourceTree = "<group>"; };
 		B63B796C20B294550014FC90 /* UINavigationController+PushMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+PushMode.h"; sourceTree = "<group>"; };
 		B63B796D20B294550014FC90 /* UINavigationController+PushMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+PushMode.m"; sourceTree = "<group>"; };
+		B664FA80212CF74F00249BC1 /* SDWebImageImageIOCoder+SDImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageImageIOCoder+SDImageCoder.m"; sourceTree = "<group>"; };
+		B664FA81212CF74F00249BC1 /* SDWebImageImageIOCoder+SDImageCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDWebImageImageIOCoder+SDImageCoder.h"; sourceTree = "<group>"; };
 		B667AE92200CA3810013222E /* ZJFreshController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJFreshController.h; sourceTree = "<group>"; };
 		B667AE93200CA3810013222E /* ZJFreshController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJFreshController.m; sourceTree = "<group>"; };
 		B667AE95200CAE620013222E /* TableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 		B6B40CA42064DC4E00FBAE30 /* BadgeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadgeButton.m; sourceTree = "<group>"; };
 		B6B4BF38207CA9CD00E7D2F1 /* ZJButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJButton.h; sourceTree = "<group>"; };
 		B6B4BF39207CA9CD00E7D2F1 /* ZJButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJButton.m; sourceTree = "<group>"; };
+		B6CEAB4A214FC9B200603E71 /* UILabel+ZJTextAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+ZJTextAction.h"; sourceTree = "<group>"; };
+		B6CEAB4B214FC9B200603E71 /* UILabel+ZJTextAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ZJTextAction.m"; sourceTree = "<group>"; };
 		B6FF3DEB20DBC8FD0048D1FD /* UIView+ZJCopy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ZJCopy.h"; sourceTree = "<group>"; };
 		B6FF3DEC20DBC8FD0048D1FD /* UIView+ZJCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZJCopy.m"; sourceTree = "<group>"; };
 		CF0595CA9F5183F9E426279D /* Pods-ZZJFresh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZJFresh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZZJFresh/Pods-ZZJFresh.debug.xcconfig"; sourceTree = "<group>"; };
@@ -447,6 +453,8 @@
 		B63AB4611FF4BBDE0007D9A4 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				B664FA81212CF74F00249BC1 /* SDWebImageImageIOCoder+SDImageCoder.h */,
+				B664FA80212CF74F00249BC1 /* SDWebImageImageIOCoder+SDImageCoder.m */,
 				B63B794220AE5EA20014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.h */,
 				B63B793F20AE5EA10014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.m */,
 				B63B794020AE5EA20014FC90 /* NSString+SCRAttributedStringBuilder.h */,
@@ -481,6 +489,8 @@
 				B6FF3DEC20DBC8FD0048D1FD /* UIView+ZJCopy.m */,
 				B60AD34A20E4A0C600393066 /* NSString+ZJNumber.h */,
 				B60AD34B20E4A0C600393066 /* NSString+ZJNumber.m */,
+				B6CEAB4A214FC9B200603E71 /* UILabel+ZJTextAction.h */,
+				B6CEAB4B214FC9B200603E71 /* UILabel+ZJTextAction.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -844,6 +854,7 @@
 				B63AB4A21FFDBCBA0007D9A4 /* UITextField+CursorRange.m in Sources */,
 				B667AE97200CAE620013222E /* TableHeaderView.m in Sources */,
 				B63AB4541FF493820007D9A4 /* TCMFreshCell.m in Sources */,
+				B6CEAB4C214FC9B200603E71 /* UILabel+ZJTextAction.m in Sources */,
 				B6A7470C20AA6AE100AB39D1 /* NSString+DecimalNumber.m in Sources */,
 				B60AD34C20E4A0C600393066 /* NSString+ZJNumber.m in Sources */,
 				B61A4B44206CB1DF00B78139 /* UIView+TransformPI.m in Sources */,
@@ -853,6 +864,7 @@
 				B6FF3DED20DBC8FD0048D1FD /* UIView+ZJCopy.m in Sources */,
 				B667AE94200CA3810013222E /* ZJFreshController.m in Sources */,
 				B63AB47A1FF5E9B10007D9A4 /* TCMNetWork.m in Sources */,
+				B664FA82212CF75000249BC1 /* SDWebImageImageIOCoder+SDImageCoder.m in Sources */,
 				B63AB4511FF4915D0007D9A4 /* TCMFreshController.m in Sources */,
 				B61A4B77207A387B00B78139 /* UIFont+AutoMatch.m in Sources */,
 				B63B796E20B294550014FC90 /* UINavigationController+PushMode.m in Sources */,

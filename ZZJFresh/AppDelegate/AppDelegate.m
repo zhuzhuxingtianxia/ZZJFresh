@@ -44,10 +44,54 @@
     NSString *string = @"2.25".multiplyingBy(@"3.35").addingBy(@"4.2".multiplyingBy(@"5.7")).endRoundingMode(NSRoundDown,2);
     NSLog(@"%@",string);
     
+    NSString *value = [[NSString alloc] initWithFormat:@"%@",@"2".raisingToPower(-2).endRoundingMode(NSRoundDown,2)];
+
+    NSLog(@"%@",value);
+    
+    NSString *value1 = @"4".multiplyingByPowerOf10(1).endRoundingMode(NSRoundDown,4);
+    NSLog(@"%@",value1);
+    
+    [self decimalToHexadecimal:0];
     return YES;
 }
 
-
+-(void)decimalToHexadecimal:(long)lint{
+    NSString *source = @"19".multiplyingByPowerOf10(18);
+    
+    NSString *value = [[NSString alloc] initWithFormat:@"%064llx",(unsigned long long)source.doubleValue];
+    NSLog(@"%@",value);
+    
+    NSString *binary = [self binaryStringWithInteger:source];
+    //11010000001010101011010010000110110011101101110000000000000000000
+    NSLog(@"%@",binary);
+    //10100110100010001001000001101011110110001011000000000000000000
+    //10100110100010001001000001101011110110001011000000000000000000
+    
+}
+//用NSString转换整数为二进制字符串
+- (NSString *)binaryStringWithInteger:(NSString*)value
+{
+    if ([value hasPrefix:@"-"]) {
+        value = [value substringFromIndex:1];
+    }
+    if (value.length>20) {
+        NSAssert(NO, @"超出64位存储范围");
+    }else if (value.length == 20){
+        NSInteger poor = [value substringToIndex:3].integerValue;
+        if (poor > 184) {
+//            NSAssert(NO, @"超出64位存储范围");
+        }
+    }
+    unsigned long long number = value.decimalNumber.doubleValue;
+    NSMutableString *string = [NSMutableString string];
+    while (number)
+    {
+        [string insertString:(number & 1)? @"1": @"0" atIndex:0];
+        number /= 2;
+    }
+    
+    return string;
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

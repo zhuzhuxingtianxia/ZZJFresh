@@ -9,6 +9,22 @@
 #import "NSString+ZJNumber.h"
 
 @implementation NSString (ZJNumber)
+
+//数字格式化
+-(NSString *)formatDecimalNumber:(NSString *)string {
+    if (!string || string.length == 0) {
+        return string;
+    }
+    
+    NSNumber *number = @([string doubleValue]);
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = kCFNumberFormatterDecimalStyle;
+    formatter.positiveFormat = @"###,##0.00";
+    NSString *newString = [formatter stringFromNumber:number];
+    
+    return newString;
+}
+
 -(NSString*)deleteLastZero {
     if ([self rangeOfString:@"."].location != NSNotFound) {
         NSArray *stringArray = [self componentsSeparatedByString:@"."];

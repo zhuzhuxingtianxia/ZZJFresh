@@ -16,7 +16,8 @@
  */
 - (NSDecimalNumber *)decimalNumber;
 /**
- 加法
+ 加法。
+ 用法: str = @"3".addingBy(@"5");
  
  string 加数
  @return 和
@@ -43,6 +44,25 @@
  @return 商
  */
 - (NSString *(^)(NSString *string))dividingBy;
+
+/**
+ 乘方指数,例如：2的（3）次方 = 8
+ 4的（1/2.0）次方 = 4的平方根 = 2
+ 2的（-2）次方 = 1/2.0的2次方 = 0.25
+ power n次方数
+ @return 幂
+ */
+- (NSString *(^)(CGFloat power))raisingToPower;
+/*
+ 乘以10的power次方，例如：“2”*（10的3次方）= 2x1000
+ 
+ “2”*（10的-2次方）= 0.02
+ 
+ power 对数
+ @return 结果
+ */
+- (NSString *(^)(short power))multiplyingByPowerOf10;
+
 /**
  操作后设置取舍模式
  
