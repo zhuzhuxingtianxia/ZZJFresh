@@ -27,4 +27,11 @@ typedef NS_OPTIONS(NSUInteger, TCMBorderSideType) {
  */
 - (void)borderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(TCMBorderSideType)borderSideType;
 
+/**
+ xib或Storyboard
+ */
+@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;
+@property (nonatomic, assign) IBInspectable UIColor *borderColor;
+@property (nonatomic, assign) IBInspectable CGFloat borderWidth;
+
 @end
