@@ -41,6 +41,9 @@
 		B61A4B44206CB1DF00B78139 /* UIView+TransformPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A4B42206CB1DF00B78139 /* UIView+TransformPI.m */; };
 		B61A4B74207A34EB00B78139 /* UIColor+HexConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A4B73207A34EB00B78139 /* UIColor+HexConvert.m */; };
 		B61A4B77207A387B00B78139 /* UIFont+AutoMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A4B76207A387B00B78139 /* UIFont+AutoMatch.m */; };
+		B620060022393385004CF74F /* classify_classes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B62005FF22393385004CF74F /* classify_classes.plist */; };
+		B62006022239338C004CF74F /* classify_classes1.plist in Resources */ = {isa = PBXBuildFile; fileRef = B62006012239338C004CF74F /* classify_classes1.plist */; };
+		B620060422393392004CF74F /* select_classify_classes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B620060322393392004CF74F /* select_classify_classes.plist */; };
 		B63AB41A1FF48C420007D9A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4191FF48C420007D9A4 /* ViewController.m */; };
 		B63AB41D1FF48C420007D9A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63AB41B1FF48C420007D9A4 /* Main.storyboard */; };
 		B63AB41F1FF48C420007D9A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63AB41E1FF48C420007D9A4 /* Assets.xcassets */; };
@@ -78,6 +81,7 @@
 		B6B40CA22064D60100FBAE30 /* PresentBasketList.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40CA12064D60000FBAE30 /* PresentBasketList.m */; };
 		B6B40CA52064DC4E00FBAE30 /* BadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40CA42064DC4E00FBAE30 /* BadgeButton.m */; };
 		B6B4BF3A207CA9CD00E7D2F1 /* ZJButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BF39207CA9CD00E7D2F1 /* ZJButton.m */; };
+		B6BB7AA1224087AD008AB8D2 /* ZJUIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BB7AA0224087AD008AB8D2 /* ZJUIScrollView.m */; };
 		B6CEAB4C214FC9B200603E71 /* UILabel+ZJTextAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CEAB4B214FC9B200603E71 /* UILabel+ZJTextAction.m */; };
 		B6CEABB921523EA900603E71 /* ethers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CEABB821523EA900603E71 /* ethers.framework */; };
 		B6FF3DED20DBC8FD0048D1FD /* UIView+ZJCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FF3DEC20DBC8FD0048D1FD /* UIView+ZJCopy.m */; };
@@ -151,6 +155,9 @@
 		B61A4B73207A34EB00B78139 /* UIColor+HexConvert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexConvert.m"; sourceTree = "<group>"; };
 		B61A4B75207A387B00B78139 /* UIFont+AutoMatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+AutoMatch.h"; sourceTree = "<group>"; };
 		B61A4B76207A387B00B78139 /* UIFont+AutoMatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AutoMatch.m"; sourceTree = "<group>"; };
+		B62005FF22393385004CF74F /* classify_classes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = classify_classes.plist; sourceTree = "<group>"; };
+		B62006012239338C004CF74F /* classify_classes1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = classify_classes1.plist; sourceTree = "<group>"; };
+		B620060322393392004CF74F /* select_classify_classes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = select_classify_classes.plist; sourceTree = "<group>"; };
 		B63AB4121FF48C420007D9A4 /* ZZJFresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZZJFresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63AB4181FF48C420007D9A4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B63AB4191FF48C420007D9A4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -226,6 +233,8 @@
 		B6B40CA42064DC4E00FBAE30 /* BadgeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadgeButton.m; sourceTree = "<group>"; };
 		B6B4BF38207CA9CD00E7D2F1 /* ZJButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJButton.h; sourceTree = "<group>"; };
 		B6B4BF39207CA9CD00E7D2F1 /* ZJButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJButton.m; sourceTree = "<group>"; };
+		B6BB7A9F224087AD008AB8D2 /* ZJUIScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJUIScrollView.h; sourceTree = "<group>"; };
+		B6BB7AA0224087AD008AB8D2 /* ZJUIScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJUIScrollView.m; sourceTree = "<group>"; };
 		B6CEAB4A214FC9B200603E71 /* UILabel+ZJTextAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+ZJTextAction.h"; sourceTree = "<group>"; };
 		B6CEAB4B214FC9B200603E71 /* UILabel+ZJTextAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ZJTextAction.m"; sourceTree = "<group>"; };
 		B6CEABB821523EA900603E71 /* ethers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ethers.framework; sourceTree = "<group>"; };
@@ -374,9 +383,14 @@
 				B63AB4791FF5E9B10007D9A4 /* TCMNetWork.m */,
 				B63AB47B1FF5EC3E0007D9A4 /* activity_status_goods_2.json */,
 				B63AB48C1FFB85BF0007D9A4 /* activity_status_goods_1.json */,
+				B62005FF22393385004CF74F /* classify_classes.plist */,
+				B62006012239338C004CF74F /* classify_classes1.plist */,
+				B620060322393392004CF74F /* select_classify_classes.plist */,
 				B63AB4611FF4BBDE0007D9A4 /* Category */,
 				B6B4BF38207CA9CD00E7D2F1 /* ZJButton.h */,
 				B6B4BF39207CA9CD00E7D2F1 /* ZJButton.m */,
+				B6BB7A9F224087AD008AB8D2 /* ZJUIScrollView.h */,
+				B6BB7AA0224087AD008AB8D2 /* ZJUIScrollView.m */,
 			);
 			path = ToolManger;
 			sourceTree = "<group>";
@@ -606,7 +620,7 @@
 		B63AB40A1FF48C420007D9A4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Jion;
 				TargetAttributes = {
 					B63AB4111FF48C420007D9A4 = {
@@ -651,11 +665,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6040457201743DB003E8D69 /* home_category@3x.png in Resources */,
+				B620060422393392004CF74F /* select_classify_classes.plist in Resources */,
 				B6040445201743DB003E8D69 /* home_home@2x.png in Resources */,
 				B6040454201743DB003E8D69 /* home_category@2x.png in Resources */,
 				B6040452201743DB003E8D69 /* home_me@3x.png in Resources */,
 				B604044B201743DB003E8D69 /* home_basket_on@3x.png in Resources */,
 				B6040458201743DB003E8D69 /* home_basket@2x.png in Resources */,
+				B62006022239338C004CF74F /* classify_classes1.plist in Resources */,
 				B63AB48D1FFB85BF0007D9A4 /* activity_status_goods_1.json in Resources */,
 				B604044A201743DB003E8D69 /* home_category_on@2x.png in Resources */,
 				B604044D201743DB003E8D69 /* home_home_on@3x.png in Resources */,
@@ -677,6 +693,7 @@
 				B63AB41D1FF48C420007D9A4 /* Main.storyboard in Resources */,
 				B6040449201743DB003E8D69 /* home_market_on@2x.png in Resources */,
 				B60403C2200DE8BB003E8D69 /* TCMFreshCell.xib in Resources */,
+				B620060022393385004CF74F /* classify_classes.plist in Resources */,
 				B6040455201743DB003E8D69 /* home_market@3x.png in Resources */,
 				B6040451201743DB003E8D69 /* home_me@2x.png in Resources */,
 			);
@@ -879,6 +896,7 @@
 				B6B40C9F2063ADA600FBAE30 /* BottomBasketView.m in Sources */,
 				B6B40CA52064DC4E00FBAE30 /* BadgeButton.m in Sources */,
 				B63AB4901FFB95270007D9A4 /* UIView+TCMBorderSide.m in Sources */,
+				B6BB7AA1224087AD008AB8D2 /* ZJUIScrollView.m in Sources */,
 				B63AB4571FF4939D0007D9A4 /* TCMFreshModel.m in Sources */,
 				B63AB45B1FF4B6070007D9A4 /* AppDelegate.m in Sources */,
 			);
@@ -949,6 +967,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -956,6 +975,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1004,6 +1024,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1011,6 +1032,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

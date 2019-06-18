@@ -73,6 +73,29 @@ static NSData *getJSONDataFromObject(id obj){
     return nil;
 }
 
+-(void)createFileData:(id)data fileName:(NSString*)interface{
+#if TARGET_IPHONE_SIMULATOR
+    
+    if ([data isKindOfClass:[NSDictionary class]]){
+        NSString *path = NSHomeDirectory();
+        path = [path substringToIndex:[path rangeOfString:@"/Library"].location];
+        path = [NSString stringWithFormat:@"%@/Desktop/Log.data", path];
+        
+        NSFileManager *fileManager = [[NSFileManager alloc] init];
+        
+        // 判断文件夹是否存在，如果不存在，则创建
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        } else {
+            NSLog(@"FileDir is exists.");
+        }
+        path = [NSString stringWithFormat:@"%@/%@.plist", path, [interface stringByReplacingOccurrencesOfString:@"/" withString:@""]];
+        
+        [(NSDictionary *)data writeToFile:path atomically:YES];
+    }
+    
+#endif
+}
 
 
 @end

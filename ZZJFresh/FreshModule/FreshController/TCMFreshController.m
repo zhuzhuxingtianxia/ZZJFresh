@@ -111,8 +111,8 @@
                     self.tableView.tableFooterView = self.footerView;
                 }
             }
-             _headerBar.hidden = NO;
-            _headerBar.sourceArray = self.titlesArray;
+             self.headerBar.hidden = NO;
+            self.headerBar.sourceArray = self.titlesArray;
             [self.tableView reloadData];
         }
         

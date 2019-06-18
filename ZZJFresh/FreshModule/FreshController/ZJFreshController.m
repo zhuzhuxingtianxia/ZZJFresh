@@ -249,9 +249,10 @@
         }
     }];
     */
+    __weak typeof(self) weakSlef = self;
     [goodsView addProductsToShopCarAnimation:(UIView*)_bastket.basktLogoBtn completion:^(BOOL flag) {
         if (finished) {
-            [_bastket addObject:goodsInfo];
+            [weakSlef.bastket addObject:goodsInfo];
             finished(flag);
         }
     }];

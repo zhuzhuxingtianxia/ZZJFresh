@@ -124,17 +124,18 @@
 }
 
 -(void)animateItem:(UIButton *)sender click:(BOOL)isClick{
+     __weak typeof(self) weakSlef = self;
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         CGPoint changePoint;
         CGFloat weight = sender.frame.size.width;
         
         
         
-        if (sender.tag >= _sourceArray.count - (isClick ? 1 : 2)) {
+        if (sender.tag >= weakSlef.sourceArray.count - (isClick ? 1 : 2)) {
             //不做偏移
-            changePoint = _scrollView.contentOffset;
+            changePoint = weakSlef.scrollView.contentOffset;
             
-        }else if (sender.frame.origin.x >= _scrollView.bounds.size.width/2 && sender.tag > 1){
+        }else if (sender.frame.origin.x >= weakSlef.scrollView.bounds.size.width/2 && sender.tag > 1){
             
             changePoint = CGPointMake((sender.tag - (isClick ? 2 : 1))*(weight+Offset), 0);
             
@@ -143,7 +144,7 @@
             changePoint = CGPointZero;
         }
         
-        _scrollView.contentOffset = changePoint;
+        weakSlef.scrollView.contentOffset = changePoint;
         
     } completion:^(BOOL finished) {
         
