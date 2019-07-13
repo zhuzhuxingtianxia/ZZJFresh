@@ -16,16 +16,27 @@ typedef NS_OPTIONS(NSUInteger, TCMBorderSideType) {
     TCMBorderSideTypeRight  = 1 << 4,
 };
 
+#if !TARGET_INTERFACE_BUILDER
+
 @interface UIView (TCMBorderSide)
 
 /**
  设置view指定位置的边框
-
+ 
  @param color 边框颜色
  @param borderWidth 边框宽度
  @param borderSideType 边框类型 例子: TCMBorderSideTypeTop|TCMBorderSideTypeBottom
  */
 - (void)borderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(TCMBorderSideType)borderSideType;
+
+@property (nonatomic, assign) CGFloat cornerRadius;
+@property (nonatomic, assign) UIColor *borderColor;
+@property (nonatomic, assign) CGFloat borderWidth;
+//对应TCMBorderSideType
+@property (nonatomic, assign) TCMBorderSideType borderType;
+@end
+
+#else // TARGET_INTERFACE_BUILDER
 
 /**
  xib或Storyboard
@@ -33,5 +44,7 @@ typedef NS_OPTIONS(NSUInteger, TCMBorderSideType) {
 @property (nonatomic, assign) IBInspectable CGFloat cornerRadius;
 @property (nonatomic, assign) IBInspectable UIColor *borderColor;
 @property (nonatomic, assign) IBInspectable CGFloat borderWidth;
+//对应TCMBorderSideType
+@property (nonatomic, assign) IBInspectable NSInteger borderType;
 
-@end
+#endif // !TARGET_INTERFACE_BUILDER
