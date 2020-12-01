@@ -44,6 +44,7 @@
 		B620060022393385004CF74F /* classify_classes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B62005FF22393385004CF74F /* classify_classes.plist */; };
 		B62006022239338C004CF74F /* classify_classes1.plist in Resources */ = {isa = PBXBuildFile; fileRef = B62006012239338C004CF74F /* classify_classes1.plist */; };
 		B620060422393392004CF74F /* select_classify_classes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B620060322393392004CF74F /* select_classify_classes.plist */; };
+		B630161E2575CDCD006C4557 /* UIControl+Delay.m in Sources */ = {isa = PBXBuildFile; fileRef = B630161D2575CDCD006C4557 /* UIControl+Delay.m */; };
 		B63AB41A1FF48C420007D9A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63AB4191FF48C420007D9A4 /* ViewController.m */; };
 		B63AB41D1FF48C420007D9A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63AB41B1FF48C420007D9A4 /* Main.storyboard */; };
 		B63AB41F1FF48C420007D9A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63AB41E1FF48C420007D9A4 /* Assets.xcassets */; };
@@ -158,6 +159,8 @@
 		B62005FF22393385004CF74F /* classify_classes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = classify_classes.plist; sourceTree = "<group>"; };
 		B62006012239338C004CF74F /* classify_classes1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = classify_classes1.plist; sourceTree = "<group>"; };
 		B620060322393392004CF74F /* select_classify_classes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = select_classify_classes.plist; sourceTree = "<group>"; };
+		B630161C2575CDCD006C4557 /* UIControl+Delay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+Delay.h"; sourceTree = "<group>"; };
+		B630161D2575CDCD006C4557 /* UIControl+Delay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Delay.m"; sourceTree = "<group>"; };
 		B63AB4121FF48C420007D9A4 /* ZZJFresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZZJFresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63AB4181FF48C420007D9A4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B63AB4191FF48C420007D9A4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 				B63AB48F1FFB95270007D9A4 /* UIView+TCMBorderSide.m */,
 				B63AB4931FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.h */,
 				B63AB4941FFCBDCE0007D9A4 /* UIControl+NoneHighlighted.m */,
+				B630161C2575CDCD006C4557 /* UIControl+Delay.h */,
+				B630161D2575CDCD006C4557 /* UIControl+Delay.m */,
 				B63AB4991FFCC3040007D9A4 /* UIImage+Additions.h */,
 				B63AB49A1FFCC3040007D9A4 /* UIImage+Additions.m */,
 				B63AB4A01FFDBCBA0007D9A4 /* UITextField+CursorRange.h */,
@@ -867,6 +872,7 @@
 				B60AD34920E4888700393066 /* NSDecimalNumber+TCM.m in Sources */,
 				B63AB4821FF61BDB0007D9A4 /* NSObject+TCMObjectCopy.m in Sources */,
 				B604042320171D7B003E8D69 /* TabBarController.m in Sources */,
+				B630161E2575CDCD006C4557 /* UIControl+Delay.m in Sources */,
 				B63B794320AE5EA20014FC90 /* NSMutableAttributedString+SCRAttributedStringBuilder.m in Sources */,
 				B63B794420AE5EA20014FC90 /* NSString+SCRAttributedStringBuilder.m in Sources */,
 				B6B40CA22064D60100FBAE30 /* PresentBasketList.m in Sources */,

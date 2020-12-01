@@ -95,6 +95,7 @@
     self.transform = CGAffineTransformTranslate(self.transform, translation.x, translation.y);
     //设置偏移归位CGPointZero = CGPointMake(0,0)
     [sender setTranslation:CGPointZero inView:self.superview];
+    //CGRectApplyAffineTransform(self.frame, self.transform);
     CGRect frame = self.frame;
     CGRect supFrame = self.superview.frame;
     // 手势结束
@@ -116,10 +117,14 @@
             frame.origin.y = supFrame.size.height - frame.size.height - 5 - 48;
         }
         
-        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-            self.frame = frame;
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.transform = CGAffineTransformIdentity;
+            [self setFrame:frame];
             
-        } completion:nil];
+        } completion:^(BOOL finished) {
+           
+        }];
+        
     }
 }
 
