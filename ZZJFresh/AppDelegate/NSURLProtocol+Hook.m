@@ -454,7 +454,7 @@ didReceiveResponse:(NSURLResponse *)response
 //    NSLog(@"%@",pathDic);
     
     NSString *interfaceStr = [[interface.pathComponents subarrayWithRange:NSMakeRange(1, interface.pathComponents.count - 1)] componentsJoinedByString:@"_"];
-#ifdef TARGET_IPHONE_SIMULATOR
+#if TARGET_IPHONE_SIMULATOR
     [self _writeSimulatorLog:response interface:interfaceStr];
 #else
     if (![self isDebuggerAttached]) {
