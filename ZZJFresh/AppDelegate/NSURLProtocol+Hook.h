@@ -20,21 +20,26 @@ static void hk_exchangedMethod(SEL originalSelector, SEL swizzledSelector, Class
 //类方法交换
 static void hk_exchangedClassMethod(SEL originalSelector, SEL swizzledSelector, Class class);
 
-@interface NSURLProtocol (Hook)
-+ (void)wk_registerScheme:(NSString*)scheme;
-
-+ (void)wk_unregisterScheme:(NSString*)scheme;
-
-@end
+typedef enum : NSUInteger {
+    LogLevel_0,
+    LogLevel_1,
+    LogLevel_2,
+    LogLevel_None = 99
+} LogLevel;
 
 @interface HKURLProtocol : NSURLProtocol
 
 + (BOOL)hk_registerClass;
 + (void)hk_unregisterClass;
-
-@end
-
-@interface NSURLSessionConfiguration (Hook)
+/*
+ log: 日志等级，默认LogLevel_0
+ reset: 每次重启xcode是否重制日志文件，默认NO
+ */
++ (void)setLogLevel:(LogLevel)log initResetLog:(BOOL)reset;
+//host拦截名单
++ (void)domainHookList:(NSArray<NSString*> *)array;
+//host过滤名单
++ (void)domainFilterList:(NSArray<NSString*> *)array;
 
 @end
 

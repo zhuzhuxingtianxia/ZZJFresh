@@ -83,6 +83,13 @@ FOUNDATION_STATIC_INLINE SEL UnregisterSchemeSelector() {
     return NSSelectorFromString(@"unregisterSchemeForCustomProtocol:");
 }
 
+@interface NSURLProtocol (Hook)
++ (void)wk_registerScheme:(NSString*)scheme;
+
++ (void)wk_unregisterScheme:(NSString*)scheme;
+
+@end
+
 @implementation NSURLProtocol (Hook)
 + (void)wk_registerScheme:(NSString *)scheme {
     Class cls = ContextControllerClass();
@@ -105,6 +112,12 @@ FOUNDATION_STATIC_INLINE SEL UnregisterSchemeSelector() {
 #pragma clang diagnostic pop
     }
 }
+@end
+
+
+
+@interface NSURLSessionConfiguration (Hook)
+
 @end
 
 @implementation NSURLSessionConfiguration (Hook)
@@ -133,13 +146,65 @@ FOUNDATION_STATIC_INLINE SEL UnregisterSchemeSelector() {
 @end
 
 
+@interface NSURLRequest (HK)
+
+@end
+
+@implementation NSURLRequest (HK)
+
+- (NSURLRequest *)cyl_getPostRequestIncludeBody {
+    return [[self cyl_getMutablePostRequestIncludeBody] copy];
+}
+- (NSMutableURLRequest *)cyl_getMutablePostRequestIncludeBody {
+    NSMutableURLRequest * req = [self mutableCopy];
+    if ([self.HTTPMethod isEqualToString:@"POST"]) {
+        if (!self.HTTPBody) {
+            NSInteger maxLength = 1024;
+            uint8_t d[maxLength];
+            NSInputStream *stream = self.HTTPBodyStream;
+            NSMutableData *data = [[NSMutableData alloc] init];
+            [stream open];
+            BOOL endOfStreamReached = NO;
+            //不能用 [stream hasBytesAvailable]) 判断，处理图片文件的时候这里的[stream hasBytesAvailable]会始终返回YES，导致在while里面死循环。
+            while (!endOfStreamReached) {
+                NSInteger bytesRead = [stream read:d maxLength:maxLength];
+                if (bytesRead == 0) { //文件读取到最后
+                    endOfStreamReached = YES;
+                } else if (bytesRead == -1) { //文件读取错误
+                    endOfStreamReached = YES;
+                } else if (stream.streamError == nil) {
+                    [data appendBytes:(void *)d length:bytesRead];
+                }
+            }
+            req.HTTPBody = [data copy];
+            [stream close];
+        }
+        
+    }
+    return req;
+}
+
+@end
+
+
 static NSString *const HKURLProtocolKey = @"kHKURLProtocolKey";
 
 @interface HKURLProtocol ()<NSURLSessionDataDelegate>
 @property(nonatomic, strong)NSURLSessionTask *task;
+@property (class, nonatomic,assign)LogLevel  logLevel;
+@property (class,nonatomic,assign)NSMutableSet *domainHookSet;
+@property (class,nonatomic,assign)NSMutableSet *domainFilterSet;
 @end
 
 @implementation HKURLProtocol
+
+@dynamic logLevel, domainHookSet, domainFilterSet;
+
+static LogLevel _logLevel = LogLevel_0;
+static NSMutableSet *_domainHookSet = nil;
+static NSMutableSet *_domainFilterSet = nil;
+
+#pragma mark --  Public
 
 + (BOOL)hk_registerClass {
     BOOL result = YES;
@@ -147,6 +212,7 @@ static NSString *const HKURLProtocolKey = @"kHKURLProtocolKey";
     result = [NSURLProtocol registerClass:[HKURLProtocol class]];
     [NSURLProtocol wk_registerScheme:@"http"];
     [NSURLProtocol wk_registerScheme:@"https"];
+    
 #endif
     return result;
 }
@@ -159,11 +225,90 @@ static NSString *const HKURLProtocolKey = @"kHKURLProtocolKey";
 #endif
 }
 
++ (void)setLogLevel:(LogLevel)log initResetLog:(BOOL)reset {
+    self.logLevel = log;
+    if (reset) {
+        NSString *logPath = [self getLogFolderPath];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:logPath]) {
+            [[NSFileManager defaultManager] removeItemAtPath:logPath error:nil];
+        }
+    }
+}
+
+//host拦截名单
++ (void)domainHookList:(NSArray<NSString*> *)array {
+    
+    [self.domainHookSet addObjectsFromArray:array];
+    
+}
+//host过滤名单
++ (void)domainFilterList:(NSArray<NSString*> *)array {
+    
+    [self.domainFilterSet addObjectsFromArray:array];
+    
+}
+
+#pragma mark -- getter
++ (void)setLogLevel:(LogLevel)logLevel{
+    _logLevel = logLevel;
+}
++(LogLevel)logLevel {
+    return _logLevel;
+}
+
++(void)setDomainHookSet:(NSMutableSet *)domainHookSet {
+    _domainHookSet = domainHookSet;
+}
++(NSMutableSet *)domainHookSet {
+    if (!_domainHookSet) {
+        NSArray *defaltArray = @[];
+        _domainHookSet = [[NSMutableSet alloc] initWithArray:defaltArray];
+    }
+    return _domainHookSet;
+}
+
++(void)setDomainFilterSet:(NSMutableSet *)domainFilterSet{
+    _domainFilterSet = domainFilterSet;
+}
++(NSMutableSet *)domainFilterSet {
+    if (!_domainFilterSet) {
+        NSArray *defaltArray = @[];
+        _domainFilterSet = [[NSMutableSet alloc] initWithArray:defaltArray];
+    }
+    return _domainFilterSet;
+}
+
+#pragma mark -- override
 
 //进行NSURLSession和WKWebView请求过滤判断
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
+    if ([self class].logLevel == LogLevel_None) {
+        return NO;
+    }
+    
     //判断是否已经处理过，防止无限循环
     if ([NSURLProtocol propertyForKey:HKURLProtocolKey inRequest:request] == nil) {
+        if (self.domainHookSet.count > 0) {
+            BOOL isHook = [[self.domainHookSet allObjects] indexOfObjectPassingTest:^BOOL(NSString  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                return [request.URL.absoluteString containsString:obj];
+            }] != NSNotFound;
+            if (isHook) {
+                return YES;
+            }
+            
+            return NO;
+        }
+        
+        if (self.domainFilterSet.count > 0) {
+            BOOL isFilter = [[self.domainFilterSet allObjects] indexOfObjectPassingTest:^BOOL(NSString  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                return [request.URL.absoluteString containsString:obj];
+            }] != NSNotFound;
+            
+            if (isFilter) {
+                return NO;
+            }
+        }
+        
         return YES;
     }
     return NO;
@@ -171,7 +316,7 @@ static NSString *const HKURLProtocolKey = @"kHKURLProtocolKey";
 
 //拦截处理
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
-    NSMutableURLRequest *mutableRequest = [request mutableCopy];
+    NSMutableURLRequest *mutableRequest = [[request cyl_getPostRequestIncludeBody] mutableCopy];
     //在此处可以做重定向处理
     
     return  mutableRequest;
@@ -208,6 +353,8 @@ static NSString *const HKURLProtocolKey = @"kHKURLProtocolKey";
     [self.task resume];
 }
 
+#pragma mark -- NSURLSessionDataDelegate
+
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
 didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
@@ -217,10 +364,14 @@ didReceiveResponse:(NSURLResponse *)response
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
-    
-    NSLog(@"=====URL: %@ \n",dataTask.currentRequest.URL);
-    
-    [self writeToFileWith:data interface:dataTask.currentRequest.URL.path];
+    if ([self class].logLevel != LogLevel_None) {
+        
+        NSLog(@"=====URL: %@ \n",dataTask.currentRequest.URL);
+        
+        NSData *dataRef = [self dataWithData:data request:dataTask.originalRequest];
+        
+        [self writeToFileWith:dataRef interface:dataTask.currentRequest.URL];
+    }
     
     [self.client URLProtocol:self didLoadData:data];
 }
@@ -234,16 +385,80 @@ didReceiveResponse:(NSURLResponse *)response
     
 }
 
-- (void)writeToFileWith:(NSData*)response interface:(NSString*)interface {
+#pragma mark --- private
+
+-(NSData *)dataWithData:(NSData*)data request:(NSURLRequest*)request {
+    
+    if ([self class].logLevel == LogLevel_1) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setValue:request.URL.absoluteString forKey:@"URL"];
+        [dict setValue:[self objctWithData:data] forKey:@"Response"];
+        
+        NSData *resultData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+        
+        return resultData;
+        
+    }else if([self class].logLevel == LogLevel_2){
+        return data;
+    }else {
+        NSMutableString *log = [NSMutableString stringWithFormat:@"URL: %@\n",request.URL.absoluteString];
+        [log appendFormat:@"Method: %@\n\n",request.HTTPMethod];
+        if ([request.HTTPMethod isEqualToString:@"POST"] && request.HTTPBody.length > 2) {
+            [log appendFormat:@"Body: %@\n\n",[self objctWithData:request.HTTPBody]];
+        }
+        
+        [log appendFormat:@"Headers: %@\n\n", [self jsonStringWithObject:request.allHTTPHeaderFields]];
+        
+        [log appendFormat:@"Response:\n %@\n", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+        
+        return  [log dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    
+}
+
+-(id)objctWithData:(NSData *)data {
+    if (!data) {
+        return data;
+    }
+    NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if ([dataStr hasPrefix:@"{"] || [dataStr hasPrefix:@"["]) {
+        NSError *error;
+        id ojc = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        if (error) {
+            return dataStr;
+        }
+        return ojc;
+    }
+    
+    return dataStr;
+    
+}
+
+-(NSString *)jsonStringWithObject:(id)obj {
+    if (!obj) {
+        return obj;
+    }
+    
+    if ([NSJSONSerialization isValidJSONObject:obj]) {
+        NSData *data = [NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingFragmentsAllowed error:nil];
+        if (data) {
+            return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        }
+    }
+    return obj;
+}
+
+
+- (void)writeToFileWith:(NSData*)response interface:(NSURL*)interface {
 //    NSDictionary *pathDic = [[NSProcessInfo processInfo] environment];
 //    NSLog(@"%@",pathDic);
-    NSString *identifier = [[[self class] _bundleIdentifier] stringByReplacingOccurrencesOfString:@"." withString:@"_"];
     
+    NSString *interfaceStr = [[interface.pathComponents subarrayWithRange:NSMakeRange(1, interface.pathComponents.count - 1)] componentsJoinedByString:@"_"];
 #ifdef TARGET_IPHONE_SIMULATOR
-    [self _writeSimulatorLog:response folderName:identifier interface:interface];
+    [self _writeSimulatorLog:response interface:interfaceStr];
 #else
     if (![self isDebuggerAttached]) {
-        [self redirectLogToDocumentFolderWithName:identifier];
+        [self redirectLogToDocumentFolderWithName:interfaceStr];
     }
     
 #endif
@@ -252,21 +467,13 @@ didReceiveResponse:(NSURLResponse *)response
 }
 
 - (void)_writeSimulatorLog:(NSData*)response
-                folderName:(NSString*)folderName
                  interface:(NSString*)interface {
     
     if ([response isKindOfClass:[NSData class]]){
        
-        NSString *path = NSHomeDirectory();
-        path = [path substringToIndex:[path rangeOfString:@"/Library"].location];
-        
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        
-        if (![fileManager fileExistsAtPath:[NSString stringWithFormat:@"%@/Desktop", path]]) {
-            return;
-        }
-        path = [NSString stringWithFormat:@"%@/Desktop/%@", path,folderName];
+        NSString *path = [[self class] getLogFolderPath];
 
+        NSFileManager *fileManager = [NSFileManager defaultManager];
         // 判断文件夹是否存在，如果不存在，则创建
         if (![fileManager fileExistsAtPath:path]) {
 
@@ -274,9 +481,18 @@ didReceiveResponse:(NSURLResponse *)response
         } else {
             NSLog(@"FileDir is exists.");
         }
-        path = [NSString stringWithFormat:@"%@/%@", path, [interface stringByReplacingOccurrencesOfString:@"/" withString:@"_"]];
-
-        [(NSData *)response writeToFile:path atomically:YES];
+        path = [NSString stringWithFormat:@"%@/%@", path, interface];
+        
+        if ([fileManager fileExistsAtPath:path]) {
+            NSMutableData *lastData = [[NSMutableData alloc] initWithData:[NSData dataWithContentsOfFile:path]];
+            [lastData appendData:[@"\n\n ---------------------------------------------------------\n\n" dataUsingEncoding:NSUTF8StringEncoding]];
+            [lastData appendData:response];
+            response = lastData;
+        }
+        @synchronized (self) {
+            [(NSData *)response writeToFile:path atomically:YES];
+        }
+        
     }
 }
 
@@ -306,11 +522,28 @@ didReceiveResponse:(NSURLResponse *)response
 
 
 -(void)dealloc {
+    [self class].domainHookSet = nil;
+    [self class].domainFilterSet = nil;
     NSLog(@"%s",__func__);
 }
 
 + (NSString *)_bundleIdentifier{
     return [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleIdentifierKey];
+}
+
++ (NSString*)getLogFolderPath {
+    NSString *identifier = [[self _bundleIdentifier] stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    NSString *path = NSHomeDirectory();
+    path = [path substringToIndex:[path rangeOfString:@"/Library"].location];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:[NSString stringWithFormat:@"%@/Desktop", path]]) {
+        NSAssert(NO, @"请在在模拟器环境下使用");
+    }
+    path = [NSString stringWithFormat:@"%@/Desktop/%@", path,identifier];
+    
+    return path;
+    
 }
 
 /*
