@@ -8,6 +8,14 @@
 
 #import "TCMNavigationController.h"
 
+@implementation UIViewController (Navigation)
+
+-(void)popViewController {
+    
+}
+
+@end
+
 @interface TCMNavigationController ()<UIGestureRecognizerDelegate>
 
 @end
@@ -43,8 +51,12 @@
 
 // 栈内有视图控制器时 弹出
 - (void)popViewControllerWhenHaveChildVC{
-    if (self.childViewControllers.count>1) {
+    if ([self.topViewController respondsToSelector:@selector(popViewController)]) {
+        [self.topViewController performSelector:@selector(popViewController)];
+    }else if (self.childViewControllers.count>1) {
         [self popViewControllerAnimated:YES];
+    }else {
+        NSLog(@"Error: %s",__FUNCTION__);
     }
 }
 

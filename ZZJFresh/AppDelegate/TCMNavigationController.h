@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@interface UIViewController (Navigation)
+-(void)popViewController;
+@end
+
 @interface TCMNavigationController : UINavigationController
 
 @end
