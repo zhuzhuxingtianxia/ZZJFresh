@@ -10,10 +10,6 @@
 
 @implementation UIViewController (Navigation)
 
--(void)popViewController {
-    
-}
-
 @end
 
 @interface TCMNavigationController ()<UIGestureRecognizerDelegate>

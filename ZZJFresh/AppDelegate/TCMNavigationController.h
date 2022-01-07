@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (Navigation)
+@protocol UIViewControllerProtocol <NSObject>
+@optional
+
 -(void)popViewController;
+
+@end
+
+@interface UIViewController (Navigation)<UIViewControllerProtocol>
+
 @end
 
 @interface TCMNavigationController : UINavigationController
