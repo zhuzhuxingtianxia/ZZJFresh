@@ -78,6 +78,7 @@
 		B664FA82212CF75000249BC1 /* SDWebImageImageIOCoder+SDImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B664FA80212CF74F00249BC1 /* SDWebImageImageIOCoder+SDImageCoder.m */; };
 		B667AE94200CA3810013222E /* ZJFreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = B667AE93200CA3810013222E /* ZJFreshController.m */; };
 		B667AE97200CAE620013222E /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B667AE96200CAE620013222E /* TableHeaderView.m */; };
+		B674840827BB34F5005FE1EE /* KYNumLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B674840727BB34F5005FE1EE /* KYNumLabel.m */; };
 		B6A7470C20AA6AE100AB39D1 /* NSString+DecimalNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A7470B20AA6AE100AB39D1 /* NSString+DecimalNumber.m */; };
 		B6B40C9F2063ADA600FBAE30 /* BottomBasketView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40C9E2063ADA600FBAE30 /* BottomBasketView.m */; };
 		B6B40CA22064D60100FBAE30 /* PresentBasketList.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B40CA12064D60000FBAE30 /* PresentBasketList.m */; };
@@ -229,6 +230,8 @@
 		B667AE93200CA3810013222E /* ZJFreshController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJFreshController.m; sourceTree = "<group>"; };
 		B667AE95200CAE620013222E /* TableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		B667AE96200CAE620013222E /* TableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
+		B674840627BB34F5005FE1EE /* KYNumLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KYNumLabel.h; sourceTree = "<group>"; };
+		B674840727BB34F5005FE1EE /* KYNumLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KYNumLabel.m; sourceTree = "<group>"; };
 		B6A7470A20AA6AE100AB39D1 /* NSString+DecimalNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DecimalNumber.h"; sourceTree = "<group>"; };
 		B6A7470B20AA6AE100AB39D1 /* NSString+DecimalNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DecimalNumber.m"; sourceTree = "<group>"; };
 		B6B40C9D2063ADA600FBAE30 /* BottomBasketView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomBasketView.h; sourceTree = "<group>"; };
@@ -397,6 +400,8 @@
 				B6B4BF39207CA9CD00E7D2F1 /* ZJButton.m */,
 				B6BB7A9F224087AD008AB8D2 /* ZJUIScrollView.h */,
 				B6BB7AA0224087AD008AB8D2 /* ZJUIScrollView.m */,
+				B674840627BB34F5005FE1EE /* KYNumLabel.h */,
+				B674840727BB34F5005FE1EE /* KYNumLabel.m */,
 			);
 			path = ToolManger;
 			sourceTree = "<group>";
@@ -887,6 +892,7 @@
 				B667AE97200CAE620013222E /* TableHeaderView.m in Sources */,
 				B63AB4541FF493820007D9A4 /* TCMFreshCell.m in Sources */,
 				B6CEAB4C214FC9B200603E71 /* UILabel+ZJTextAction.m in Sources */,
+				B674840827BB34F5005FE1EE /* KYNumLabel.m in Sources */,
 				B61146532751097A000EC56C /* NSURLProtocol+Hook.m in Sources */,
 				B6A7470C20AA6AE100AB39D1 /* NSString+DecimalNumber.m in Sources */,
 				B60AD34C20E4A0C600393066 /* NSString+ZJNumber.m in Sources */,
